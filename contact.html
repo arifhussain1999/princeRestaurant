@@ -2466,8 +2466,33 @@
           </div>
           -->
 
-
-
+              <div class="ft-socials">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/theprincerestaurant" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Facebook">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://instagram.com/theprincerestaurant" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Instagram">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer" class="ft-social"
+                  aria-label="WhatsApp">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path
+                      d="M11.99 2C6.476 2 2 6.477 2 11.99c0 1.79.467 3.47 1.284 4.926L2 22l5.233-1.237A9.96 9.96 0 0 0 12 22c5.514 0 9.99-4.476 9.99-9.99C21.99 6.477 17.504 2 11.99 2z" />
+                  </svg>
+                </a>
                 <!-- Google Maps -->
                 <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
                   class="ft-social" aria-label="Google Maps">
@@ -2629,6 +2654,38 @@
 
         </div><!-- /.container -->
       </div><!-- /.ft-inner -->
+    </footer>
+
+    <div class="cherry-float-actions" aria-label="Quick actions">
+      <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer"
+        class="cherry-float-btn cherry-float-btn--whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M16.6 14.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.5.1-.2-.1-1-.4-1.8-1.1-.7-.6-1.2-1.3-1.3-1.5-.1-.2 0-.4.1-.5l.3-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.4 3.8 3.4.5.2 1 .4 1.3.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1 0-.1-.2-.2-.4-.3Z" />
+          <path
+            d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z" />
+        </svg>
+      </a>
+
+      <button type="button" id="cherry-scroll-top" class="cherry-float-btn cherry-float-btn--top"
+        aria-label="Scroll to top" title="Scroll to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="m5 12 7-7 7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ═══════════════════ FOOTER JS ═══════════════════ -->
+    <script>
+      /* Auto year */
+      document.querySelectorAll('.ft-year').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    </script>
+
+  </div><!-- /.ft-inner -->
     </footer>
 
     <div class="cherry-float-actions" aria-label="Quick actions">
