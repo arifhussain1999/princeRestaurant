@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https://images.unsplash.com; video-src 'self'; frame-src https://www.google.com; connect-src 'self';">
+  <title>About Us — The Prince Restaurant, Kharagpur</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- ── Bootstrap 5 CSS ── -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- ── Bootstrap Icons ── -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- ── Google Fonts ── -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       ROOT VARIABLES & RESET
+    ============================================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cr-dark: #2a0808;
+      --cr-mid: #6b1414;
+      --cr-main: #8b1a1a;
+      --cr-bright: #c0392b;
+      --cr-light: #e05555;
+      --cream: #f8f3ee;
+      --cream2: #f0e8da;
+      --text-dark: #1a0a0a;
+      --text-mid: #4a2020;
+      --text-muted: #7a5050;
+      --white: #ffffff;
+      --fd: 'Playfair Display', Georgia, serif;
+      --fb: 'Jost', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--fb);
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    main {
+      padding-top: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    /* ============================================================
+       NAVBAR WRAPPER OVERRIDES
+    ============================================================ */
+    #cherry-nav-wrapper {
+      background: rgba(90, 15, 15, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      transition: border-radius 0.35s ease, box-shadow 0.4s ease, background 0.4s ease;
+
+    }
+
+    #cherry-nav-wrapper.scrolled-wrapper {
+      background: rgba(90, 15, 15, 0.94);
+      box-shadow: none;
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    #cherry-nav-wrapper.menu-open-wrapper {
+      border-radius: 22px;
+    }
+
+    #cherry-nav-wrapper .c-bar {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #8b1a1a, #e05555, #8b1a1a);
+      z-index: 99999;
+      transition: width 0.08s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+
+    /* ============================================================
+       SECTION 1 — PAGE HERO (small hero banner)
+    ============================================================ */
+    .page-hero {
+      min-height: 52vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url('images/2.jpg') center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Red glow blob */
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 80, 80, 0.2), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       VIDEO HERO BACKGROUND (with glow effect) - INSERT HERE
+    ============================================================ */
+    .video-hero {
+      position: relative;
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 20px 80px;
+      overflow: hidden;
+      background: none;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 2;
+    }
+
+    /* Keep the red glow effect */
+    .video-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 80, 80, 0.2), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .video-hero .page-hero-content {
+      position: relative;
+      z-index: 4;
+    }
+
+
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Breadcrumb */
+    .page-hero-bread {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 18px;
+    }
+
+    .page-hero-bread a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+    }
+
+    .page-hero-bread a:hover {
+      color: var(--cr-light);
+    }
+
+    .page-hero-bread-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Page title */
+    .page-hero-title {
+      font-family: var(--fd);
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .page-hero-sub {
+      font-size: clamp(12px, 1.8vw, 14px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+
+    /* ============================================================
+       SHARED SECTION STYLES
+    ============================================================ */
+    .sec-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cr-main);
+      margin-bottom: 12px;
+    }
+
+    .sec-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--cr-main);
+    }
+
+    .sec-title {
+      font-family: var(--fd);
+      font-size: clamp(26px, 4.5vw, 44px);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--cr-main);
+    }
+
+    .sec-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.80;
+    }
+
+    /* Button styles */
+    .btn-cherry {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: var(--cr-main);
+      color: #fff;
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 9999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(139, 26, 26, 0.4);
+    }
+
+    .btn-cherry:hover {
+      background: var(--cr-bright);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139, 26, 26, 0.55);
+    }
+
+    .btn-outline-cr {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: transparent;
+      color: var(--cr-main);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(139, 26, 26, 0.3);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-outline-cr:hover {
+      background: var(--cr-main);
+      color: #fff;
+      border-color: var(--cr-main);
+    }
+
+
+    /* ============================================================
+       SECTION 2 — ABOUT INTRO
+       Concept from the React component: left text + right image
+    ============================================================ */
+    .about-intro {
+      padding: 90px 0;
+      background: var(--cream);
+    }
+
+    .about-intro-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(42, 8, 8, 0.18);
+      transition: transform 0.5s ease;
+    }
+
+    .about-intro-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Decorative border behind image — like the React component */
+    .about-img-frame {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 2px solid rgba(139, 26, 26, 0.2);
+      border-radius: 24px;
+      z-index: 0;
+      transition: border-color 0.3s;
+      overflow: hidden;
+    }
+
+    .about-img-frame:hover::before {
+      border-color: rgba(139, 26, 26, 0.45);
+    }
+
+    .about-img-frame img {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating badge on image */
+    .about-float-badge {
+      position: absolute;
+      bottom: 20px;
+      right: -16px;
+      z-index: 2;
+      background: var(--cr-main);
+      color: #fff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      text-align: center;
+      box-shadow: 0 8px 28px rgba(139, 26, 26, 0.45);
+      animation: floatBadge 4s ease-in-out infinite;
+    }
+
+    @keyframes floatBadge {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .about-float-badge-num {
+      font-family: var(--fd);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      display: block;
+    }
+
+    .about-float-badge-text {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ISO badges */
+    .iso-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
+    .iso-badge {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cr-main);
+      background: rgba(139, 26, 26, 0.07);
+      border: 1px solid rgba(139, 26, 26, 0.15);
+      border-radius: 5px;
+      padding: 4px 10px;
+    }
+
+
+    /* ============================================================
+       SECTION 3 — SERVICES GRID
+       3-column layout: left services | center image | right services
+       Directly inspired by the React component structure
+    ============================================================ */
+    .services-section {
+      padding: 90px 0;
+      background: var(--white);
+    }
+
+    /* Center image */
+    .services-center-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(42, 8, 8, 0.18);
+    }
+
+    /* View portfolio button over image */
+    .services-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+
+
+    }
+
+    .services-img-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(26, 10, 10, 0.7));
+      padding: 28px 20px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .services-portfolio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text-dark);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .services-portfolio-btn:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      color: var(--cr-main);
+    }
+
+    /* Service item card */
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 0 0 28px;
+      border-bottom: 1px solid rgba(139, 26, 26, 0.08);
+      transition: transform 0.25s;
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .service-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .service-item-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(139, 26, 26, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cr-main);
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background 0.25s, transform 0.25s;
+      position: relative;
+    }
+
+    .service-item:hover .service-icon {
+      background: rgba(139, 26, 26, 0.15);
+      transform: rotate(8deg) scale(1.1);
+    }
+
+    .service-title {
+      font-family: var(--fd);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: color 0.25s;
+    }
+
+    .service-item:hover .service-title {
+      color: var(--cr-main);
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.70;
+      padding-left: 56px;
+    }
+
+    /* Learn more link */
+    .service-learn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cr-main);
+      text-decoration: none;
+      margin-top: 8px;
+      padding-left: 56px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .service-item:hover .service-learn {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+
+    /* ============================================================
+       SECTION 4 — STATS COUNTER
+       Animated number counters — from the React component
+    ============================================================ */
+    .stats-section {
+      padding: 80px 0;
+      background: var(--cr-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(139, 26, 26, 0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 50%, rgba(139, 26, 26, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px 20px;
+      text-align: center;
+      height: 100%;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(139, 26, 26, 0.35);
+      color: var(--cr-light);
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      transition: transform 0.4s, background 0.3s;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform: rotate(360deg);
+      background: rgba(139, 26, 26, 0.55);
+    }
+
+    .stat-number {
+      font-family: var(--fd);
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Underline that expands on hover */
+    .stat-line {
+      width: 32px;
+      height: 2px;
+      background: var(--cr-light);
+      margin: 14px auto 0;
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+
+    .stat-card:hover .stat-line {
+      width: 56px;
+    }
+
+
+
+
+    /* ============================================================
+       SECTION 6 — CTA BANNER
+       Dark cherry full-width CTA from the React component
+    ============================================================ */
+    .cta-section {
+      padding: 80px 0;
+      background: var(--cr-main);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      font-family: var(--fd);
+      font-size: clamp(26px, 4.5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .cta-title em {
+      font-style: italic;
+      opacity: 0.6;
+    }
+
+    .cta-desc {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.75;
+      margin-bottom: 0;
+      max-width: 460px;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: #fff;
+      color: var(--cr-main);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-white:hover {
+      color: var(--cr-main);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-outline-wh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-outline-wh:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Stagger delays */
+    .reveal-d1 {
+      transition-delay: 0.10s;
+    }
+
+    .reveal-d2 {
+      transition-delay: 0.20s;
+    }
+
+    .reveal-d3 {
+      transition-delay: 0.30s;
+    }
+
+    .reveal-d4 {
+      transition-delay: 0.40s;
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — TABLET
+    ============================================================ */
+    @media (max-width: 991px) {
+      .about-intro-img {
+        height: 380px;
+      }
+
+      .about-float-badge {
+        right: 0;
+      }
+
+      .services-center-img {
+        height: 400px;
+      }
+
+      .service-desc {
+        padding-left: 0;
+      }
+
+      .service-learn {
+        padding-left: 0;
+        opacity: 1;
+        transform: none;
+      }
+
+      .about-img-frame::before {
+        display: none;
+      }
+
+      /* Timeline becomes single column on tablet */
+      .timeline::before {
+        left: 20px;
+      }
+
+      .tl-item {
+        padding-right: 0;
+        padding-left: 56px;
+        justify-content: flex-start;
+      }
+
+      .tl-item:nth-child(even) {
+        padding-left: 56px;
+      }
+
+      .tl-item::after {
+        left: 20px;
+      }
+
+      .tl-card {
+        max-width: 100%;
+      }
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 767px) {
+      #cherry-nav-wrapper {
+        top: 14px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        margin: 0 !important;
+        transform: none !important;
+      }
+
+      .page-hero {
+        padding: 110px 20px 60px;
+        min-height: 40vh;
+        overflow: hidden;
+      }
+
+      .page-hero-title {
+        font-size: clamp(26px, 9vw, 42px);
+        word-break: break-word;
+      }
+
+      .page-hero-sub {
+        font-size: 10px;
+        letter-spacing: 0.10em;
+      }
+
+      .about-intro {
+        padding: 60px 0;
+      }
+
+      .about-intro-img {
+        height: 260px;
+      }
+
+      .about-float-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 14px;
+      }
+
+      .services-section {
+        padding: 60px 0;
+      }
+
+      .services-center-img {
+        height: 260px;
+        margin-bottom: 32px;
+      }
+
+      .stats-section {
+        padding: 60px 0;
+      }
+
+      .timeline-section {
+        padding: 60px 0;
+      }
+
+      .cta-section {
+        padding: 60px 0;
+      }
+
+      .cta-section .row {
+        text-align: center;
+      }
+
+      .cta-desc {
+        max-width: 100%;
+      }
+
+      .cta-section .d-flex.flex-wrap.gap-3 {
+        justify-content: center !important;
+      }
+
+      /* Add these lines for video hero mobile */
+      .video-hero {
+        padding: 110px 20px 60px;
+        min-height: 40vh;
+      }
+
+      .hero-video-bg {
+        object-fit: cover;
+      }
+
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — SMALL MOBILE
+    ============================================================ */
+    @media (max-width: 480px) {
+
+      .btn-cherry,
+      .btn-outline-cr,
+      .btn-white,
+      .btn-outline-wh {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 20px;
+        font-size: 11px;
+      }
+
+      .stat-number {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<!-- data-page="about" highlights the About link in navbar -->
+
+<body data-page="about">
+
+  <!-- ============================================================
+       SCROLL PROGRESS BAR
+  ============================================================ -->
+  <div id="scroll-progress"></div>
+
+  <!-- ============================================================
+       NAVBAR — injected from includes/navbar.html
+  ============================================================ -->
+  <div id="navbar-placeholder">
+    <!-- includes/navbar.html -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet">
+
+    <style>
+      #cherry-nav-wrapper {
+        position: fixed !important;
+        top: calc(14px + var(--vv-top, 0px)) !important;
+        left: max(env(safe-area-inset-left, 0px), 12px) !important;
+        right: max(env(safe-area-inset-right, 0px), 12px) !important;
+        transform: none !important;
+        z-index: 99999 !important;
+        width: auto;
+        max-width: 1140px;
+        backface-visibility: hidden;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ── Pill ── */
+      .c-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 22px;
+        height: 64px;
+        background: rgba(107, 20, 20, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 9999px;
+        transition: background 0.4s, border-radius 0.35s, box-shadow 0.4s;
+        width: 100%;
+        max-width: 1140px;
+      }
+
+      .c-bar.scrolled {
+        background: rgba(50, 8, 8, 0.98);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .c-bar.nav-open {
+        border-radius: 20px;
+      }
+
+      /* ── Logo ── */
+      .c-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .c-logo img {
+        display: block;
+        height: 52px !important;
+        width: auto !important;
+        object-fit: contain !important;
+      }
+
+      .c-logo-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        display: block;
+        line-height: 1;
+      }
+
+      .c-logo-sub {
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 3px;
+      }
+
+      /* ── Desktop nav links ── */
+      .c-nav-links {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 28px;
+      }
+
+      .c-nav-links a {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        height: 22px;
+        line-height: 22px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color 0.25s;
+      }
+
+      .c-nav-links a::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: top 0.28s ease;
+      }
+
+      .c-nav-links a:hover {
+        color: transparent;
+      }
+
+      .c-nav-links a:hover::after {
+        top: 0;
+      }
+
+      .c-nav-links a.active {
+        color: #ffffff;
+        font-weight: 500;
+      }
+
+      /* ── Reserve button ── */
+      .c-btn-reserve {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 20px;
+        font-family: 'Jost', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 9999px;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: border-color 0.25s, background 0.25s;
+      }
+
+      .c-btn-reserve:hover {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* ── Hamburger ── */
+      .c-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .c-hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 2px;
+        transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+      }
+
+      .c-hamburger.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+        background: #ffffff;
+      }
+
+      .c-hamburger.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .c-hamburger.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+        background: #ffffff;
+      }
+
+      /* ── Mobile dropdown ── */
+      .c-mobile-menu {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        width: 100%;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+        /* CRITICAL: same dark background as pill so text is visible */
+        background: transparent;
+      }
+
+      .c-mobile-menu.is-open {
+        max-height: 520px;
+        opacity: 1;
+        padding: 14px 8px 16px;
+        overflow-y: auto;
+      }
+
+      .c-mobile-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.10);
+        margin-bottom: 16px;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+
+      .c-mobile-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .c-mobile-links li {
+        width: 100%;
+      }
+
+      /* ── KEY FIX: white text on dark pill background ── */
+      .c-mobile-links a {
+        display: block;
+        width: 100%;
+        padding: 11px 16px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.75) !important;
+        /* force white text */
+        border-radius: 10px;
+        transition: color 0.2s, background 0.2s;
+      }
+
+      .c-mobile-links a:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .c-mobile-links a.active {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.06);
+        font-weight: 600;
+      }
+
+      .c-mobile-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 12px;
+        padding: 13px 16px;
+        font-family: 'Jost', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-align: center;
+        color: #ffffff !important;
+        background: rgba(139, 26, 26, 0.50);
+        border: 1px solid rgba(255, 255, 255, 0.20);
+        border-radius: 9999px;
+        text-decoration: none;
+        white-space: normal;
+        line-height: 1.35;
+        transition: background 0.25s, border-color 0.25s;
+      }
+
+      .c-mobile-cta:hover {
+        background: rgba(139, 26, 26, 0.75);
+        border-color: rgba(255, 255, 255, 0.45);
+        color: #ffffff !important;
+      }
+
+      /* ── Breakpoints ── */
+      @media (min-width: 1200px) {
+        .c-hamburger {
+          display: none !important;
+        }
+
+        .c-mobile-menu {
+          display: none !important;
+        }
+
+        .c-nav-links {
+          gap: 32px;
+        }
+      }
+
+      @media (min-width: 992px) and (max-width: 1199px) {
+        .c-hamburger {
+          display: none !important;
+        }
+
+        .c-mobile-menu {
+          display: none !important;
+        }
+
+        .c-nav-links {
+          gap: 20px;
+        }
+
+        .c-nav-links a {
+          font-size: 12px;
+          letter-spacing: 0.12em;
+        }
+
+        .c-btn-reserve {
+          padding: 8px 14px;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+        }
+
+        .c-logo-name {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .c-nav-links {
+          display: none !important;
+        }
+
+        .c-btn-reserve {
+          display: none !important;
+        }
+
+        .c-hamburger {
+          display: flex !important;
+        }
+
+        .c-bar {
+          padding: 0 16px;
+          height: 58px;
+        }
+
+        .c-logo-sub {
+          display: none;
+        }
+
+        /* Reduce scroll jank on mobile browsers */
+        #cherry-nav-wrapper {
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+        }
+
+        .c-logo img {
+          height: 44px !important;
+          width: auto !important;
+        }
+
+      }
+
+      @media (max-width: 380px) {
+        .c-bar {
+          padding: 0 12px;
+          height: 54px;
+        }
+
+        .c-logo-name {
+          font-size: 15px;
+        }
+
+        .c-logo img {
+          height: 40px !important;
+          width: auto !important;
+        }
+
+      }
+
+      /* Prevent horizontal overflow on entire page */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Prevent stat cards from overflowing on mobile */
+      @media (max-width: 480px) {
+        .stats-bar .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .stat-card {
+          padding: 20px 12px;
+        }
+
+        .stat-value {
+          font-size: 18px;
+          word-break: break-word;
+        }
+
+        .stat-label {
+          font-size: 9px;
+          letter-spacing: 0.08em;
+        }
+      }
+    </style>
+
+    <!-- HTML -->
+    <div id="cherry-nav-wrapper">
+
+      <div class="c-bar" id="cBar">
+
+        <!-- Logo -->
+        <a href="index.html" class="c-logo">
+          <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo">
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="c-nav-links">
+          <li><a href="index.html" data-text="Home" data-page="home">Home</a></li>
+          <li><a href="about.html" data-text="About" data-page="about">About</a></li>
+          <li><a href="menu.html" data-text="Menu" data-page="menu">Menu</a></li>
+
+          <li><a href="contact.html" data-text="Contact" data-page="contact">Contact</a></li>
+        </ul>
+
+        <!-- Reserve button (desktop/tablet) -->
+        <a href="tel:+916294142257" class="c-btn-reserve">
+          Reserve a Table
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="c-hamburger" id="cHamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div><!-- /.c-bar -->
+
+      <!-- Mobile dropdown (INSIDE the pill wrapper so it inherits dark bg) -->
+      <div class="c-mobile-menu" id="cMobileMenu" aria-hidden="true">
+        <div class="c-mobile-divider"></div>
+
+        <ul class="c-mobile-links">
+          <li><a href="index.html" data-page="home">Home</a></li>
+          <li><a href="about.html" data-page="about">About</a></li>
+          <li><a href="menu.html" data-page="menu">Menu</a></li>
+          <li><a href="contact.html" data-page="contact">Contact</a></li>
+        </ul>
+
+        <div style="padding: 0 8px;">
+          <a href="tel:+916294142257" class="c-mobile-cta">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
+            </svg>
+            Reserve a Table &nbsp;+91 6294 142 257
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /#cherry-nav-wrapper -->
+
+  </div>
+
+
+  <main>
+
+
+    <!-- ============================================================
+        SECTION 1 — PAGE HERO BANNER WITH VIDEO BACKGROUND
+    ============================================================ -->
+    <section class="page-hero video-hero">
+      <!-- Hero Background Image -->
+      <img src="images/about_hero.png" alt="The Prince Restaurant" class="hero-video-bg">
+
+      <!-- Dark Overlay (replaces the CSS gradient) -->
+      <div class="hero-overlay"></div>
+
+      <!-- Content -->
+      <div class="page-hero-content">
+        <!-- Breadcrumb -->
+        <div class="page-hero-bread">
+          <a href="index.html">Home</a>
+          <span class="page-hero-bread-sep">/</span>
+          <span>About Us</span>
+        </div>
+        <!-- Title -->
+        <h1 class="page-hero-title">
+          About <em>The Prince</em>
+        </h1>
+        <!-- Sub -->
+        <p class="page-hero-sub">ISO Certified · Est. Kharagpur · 11 AM – 11 PM</p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 2 — ABOUT INTRO
+         Left: image with float badge | Right: story text
+    ============================================================ -->
+    <section class="about-intro">
+      <div class="container">
+        <div class="row align-items-center g-5">
+
+          <!-- Left: image -->
+          <div class="col-12 col-lg-5 reveal-left">
+            <div class="about-img-frame">
+              <img src="images/about_interior.png" alt="The Prince Restaurant interior" class="about-intro-img" />
+              <!-- Float badge -->
+              <div class="about-float-badge">
+                <span class="about-float-badge-num">ISO</span>
+                <span class="about-float-badge-text">9001 · 22000<br>Certified</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: text -->
+          <div class="col-12 col-lg-7 reveal-right">
+            <span class="sec-tag">Our Story</span>
+            <h2 class="sec-title">
+              More Than a Restaurant,<br>
+              <em>A Place to Remember</em>
+            </h2>
+            <p class="sec-desc mb-4">
+              Food excites individuals and brings happiness. Good food with quality
+              get-together enhances contentment, increases bonding among friends,
+              boosts family happiness, and more importantly initiates healthy discussions.
+            </p>
+            <p class="sec-desc mb-4">
+              We at The Prince are here not only to satisfy your hunger, but more importantly
+              to <strong>create memories</strong> — and add joy to your beautiful day.
+              From dum biryani to Bengali fishes, Chinese cuisine to mouth-watering desserts,
+              laajawab tandooris to authentic mocktails.
+            </p>
+            <p class="sec-desc mb-4">
+              We are committed to preparing healthy dishes using quality ingredients without
+              compromising taste. We do not use any kind of additives or food colours and
+              are dedicated to preparing nutritious yet delicious dishes.
+            </p>
+
+            <!-- ISO badges -->
+            <div class="iso-badges mb-4">
+              <span class="iso-badge">ISO 9001:2015</span>
+              <span class="iso-badge">ISO 22000:2018</span>
+              <span class="iso-badge">Hygiene Certified</span>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="menu.html" class="btn-cherry">
+                <i class="bi bi-journal-text"></i> View Our Menu
+              </a>
+              <a href="contact.html" class="btn-outline-cr">
+                Contact Us
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 3 — SERVICES / WHAT WE OFFER
+         3-column: left services | center image | right services
+         Concept directly from the React about-us-section component
+    ============================================================ -->
+    <section class="services-section">
+      <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-5 reveal">
+          <span class="sec-tag" style="justify-content:center;">What We Offer</span>
+          <h2 class="sec-title">
+            Classic, <em>Heritage</em> & Unique Cuisine
+          </h2>
+          <p class="sec-desc mx-auto" style="max-width:540px;">
+            Our chefs are reinventing dishes with their wide range of experience,
+            portraying classic, heritage and unique cuisine across every category.
+          </p>
+        </div>
+
+        <div class="row g-4 align-items-center">
+
+          <!-- LEFT: Services 1–3 -->
+          <div class="col-12 col-lg-4">
+            <div class="d-flex flex-column gap-4">
+
+              <!-- Service 1 -->
+              <div class="service-item reveal reveal-d1">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-fire"></i>
+                  </div>
+                  <h3 class="service-title">Indian Cuisine</h3>
+                </div>
+                <p class="service-desc">From rich Mughlai curries to fresh Bengal fish — our Indian main course
+                  celebrates the full depth of the subcontinent's flavours.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+              <!-- Service 2 -->
+              <div class="service-item reveal reveal-d2">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-egg-fried"></i>
+                  </div>
+                  <h3 class="service-title">Chinese & Asian</h3>
+                </div>
+                <p class="service-desc">Authentic Indo-Chinese starters, mains, noodles and rice — crafted with fresh
+                  vegetables, premium sauces and chef expertise.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+              <!-- Service 3 -->
+              <div class="service-item reveal reveal-d3">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                  </div>
+                  <h3 class="service-title">Tandoor & Grill</h3>
+                </div>
+                <p class="service-desc">Laajawab tandooris — chicken tikka, reshmi kabab, fish tikka and more, all
+                  cooked in our authentic clay oven for that smoky perfection.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- CENTER: Image -->
+          <div class="col-12 col-lg-4 reveal">
+            <div class="services-img-wrap">
+              <img src="menu/ab.png" alt="The Prince Restaurant dishes" class="services-center-img" />
+              <!-- Overlay with portfolio button -->
+              <div class="services-img-overlay">
+                <a href="menu.html" class="services-portfolio-btn">
+                  View Full Menu <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Services 4–6 -->
+          <div class="col-12 col-lg-4">
+            <div class="d-flex flex-column gap-4">
+
+              <!-- Service 4 -->
+              <div class="service-item reveal reveal-d1">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-cup-straw"></i>
+                  </div>
+                  <h3 class="service-title">Mocktails</h3>
+                </div>
+                <p class="service-desc">From Prince Special Spicy Ocean to Pina Colada — our creative mocktail menu
+                  offers refreshing flavours for every mood and occasion.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+              <!-- Service 5 -->
+              <div class="service-item reveal reveal-d2">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-box2-heart"></i>
+                  </div>
+                  <h3 class="service-title">Biryani & Rice</h3>
+                </div>
+                <p class="service-desc">Fragrant Chicken Biryani, Mutton Biryani, Moon Fan Rice and more — every grain
+                  cooked with aromatic spices and layered to perfection.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+              <!-- Service 6 -->
+              <div class="service-item reveal reveal-d3">
+                <div class="service-item-top">
+                  <div class="service-icon">
+                    <i class="bi bi-cake2"></i>
+                  </div>
+                  <h3 class="service-title">Desserts</h3>
+                </div>
+                <p class="service-desc">End your meal on a sweet note — Brownie with Ice Cream, Chocolate Cigar Roll,
+                  Fried Ice Cream and more to satisfy every sweet tooth.</p>
+                <a href="menu.html" class="service-learn">
+                  Explore <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 4 — STATS COUNTER
+         Animated counters — concept from React StatCounter component
+    ============================================================ -->
+    <section class="stats-section">
+      <div class="container position-relative" style="z-index:1;">
+
+        <!-- Heading -->
+        <div class="text-center mb-5 reveal">
+          <span class="sec-tag" style="justify-content:center; color:rgba(255,255,255,0.5);">By The Numbers</span>
+          <h2 class="sec-title" style="color:#fff;">
+            The Prince <em style="color:var(--cr-light);">In Numbers</em>
+          </h2>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Stat 1 -->
+          <div class="col-12 col-sm-6 col-lg-3 reveal reveal-d1">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-award"></i></div>
+              <div class="stat-number" data-target="1500" data-suffix="+">0+</div>
+              <div class="stat-label">Reviews</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="col-12 col-sm-6 col-lg-3 reveal reveal-d2">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-people"></i></div>
+              <div class="stat-number" data-target="1200" data-suffix="+">0+</div>
+              <div class="stat-label">Happy Customers</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="col-12 col-sm-6 col-lg-3 reveal reveal-d3">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+              <div class="stat-number" data-target="8" data-suffix="+">0+</div>
+              <div class="stat-label">Years of Excellence</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="col-12 col-sm-6 col-lg-3 reveal reveal-d4">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
+              <div class="stat-number" data-target="200" data-suffix="+">0+</div>
+              <div class="stat-label">Menu Items</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6 — CTA BANNER
+    ============================================================ -->
+    <section class="cta-section">
+      <div class="container position-relative" style="z-index:1;">
+        <div class="row align-items-center g-4">
+
+          <!-- Left: text -->
+          <div class="col-12 col-lg-7 reveal-left">
+            <h2 class="cta-title">
+              Ready to Create<br>
+              <em>Your Prince Memory?</em>
+            </h2>
+            <p class="cta-desc">
+              Walk in or call ahead. Open every day from 11 AM to 11 PM.
+              Kharagpur's premium dining destination is waiting for you.
+            </p>
+          </div>
+
+          <!-- Right: buttons -->
+          <div class="col-12 col-lg-5 reveal-right">
+            <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+              <a href="tel:+916294142257" class="btn-white">
+                <i class="bi bi-telephone-fill"></i> Call to Reserve
+              </a>
+              <a href="menu.html" class="btn-outline-wh">
+                Browse Menu
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — injected from includes/footer.html
+  ============================================================ -->
+  <div id="footer-placeholder">
+    <!-- ============================================================
+     The Prince Restaurant — FOOTER
+     File location: includes/footer.html
+     Stack: Bootstrap 5 + Custom CSS + Vanilla JS
+     ============================================================ -->
+
+    <style>
+      /* ── Footer Variables ───────────────────────────────────────── */
+      #cherry-footer {
+        --cherry-dark: #3a0a0a;
+        --cherry-mid: #5c1010;
+        --cherry-red: #e05555;
+        --white-85: rgba(255, 255, 255, 0.85);
+        --white-60: rgba(255, 255, 255, 0.60);
+        --white-40: rgba(255, 255, 255, 0.40);
+        --white-20: rgba(255, 255, 255, 0.20);
+        --white-10: rgba(255, 255, 255, 0.10);
+        --white-06: rgba(255, 255, 255, 0.06);
+        --font-display: 'Playfair Display', Georgia, serif;
+        --font-body: 'Jost', sans-serif;
+
+        background: #3a0a0a;
+        font-family: var(--font-body);
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── Ambient glow ───────────────────────────────────────────── */
+      #cherry-footer::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 10% 60%, rgba(139, 26, 26, 0.20) 0%, transparent 50%),
+          radial-gradient(ellipse at 90% 40%, rgba(139, 26, 26, 0.14) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      /* ── Inner container ────────────────────────────────────────── */
+      #cherry-footer .ft-inner {
+        position: relative;
+        z-index: 1;
+        padding: 60px 0 30px;
+      }
+
+      /* ── Section heading ────────────────────────────────────────── */
+      #cherry-footer .ft-heading {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--white-85);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      /* ── Brand column ───────────────────────────────────────────── */
+      #cherry-footer .ft-brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        margin-bottom: 0;
+      }
+
+      #cherry-footer .ft-brand-name {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        display: block;
+        line-height: 1;
+      }
+
+      #cherry-footer .ft-brand-sub {
+        font-size: 8px;
+        font-weight: 300;
+        color: var(--white-40);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 4px;
+      }
+
+      #cherry-footer .ft-tagline {
+        color: var(--white-40);
+        font-size: 12.5px;
+        line-height: 1.80;
+        max-width: 250px;
+        margin-bottom: 18px;
+      }
+
+      /* ── ISO badges ─────────────────────────────────────────────── */
+      #cherry-footer .ft-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 22px;
+      }
+
+      #cherry-footer .ft-badge {
+        font-size: 8.5px;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: var(--white-40);
+        border: 1px solid var(--white-10);
+        border-radius: 4px;
+        padding: 3px 9px;
+      }
+
+      /* ── Social icons ───────────────────────────────────────────── */
+      #cherry-footer .ft-socials {
+        display: flex;
+        gap: 8px;
+      }
+
+      #cherry-footer .ft-social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--white-10);
+        color: var(--white-40);
+        text-decoration: none;
+        transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
+      }
+
+      #cherry-footer .ft-social:hover {
+        color: #fff;
+        border-color: var(--white-40);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-2px);
+      }
+
+      /* ── Nav links ──────────────────────────────────────────────── */
+      #cherry-footer .ft-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      #cherry-footer .ft-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--white-40);
+        transition: color 0.22s, gap 0.22s;
+      }
+
+      #cherry-footer .ft-links a::before {
+        content: '';
+        display: inline-block;
+        width: 14px;
+        height: 1px;
+        background: var(--white-20);
+        flex-shrink: 0;
+        transition: width 0.25s, background 0.25s;
+      }
+
+      #cherry-footer .ft-links a:hover {
+        color: #fff;
+        gap: 14px;
+      }
+
+      #cherry-footer .ft-links a:hover::before {
+        width: 22px;
+        background: var(--white-60);
+      }
+
+      /* ── Opening hours ──────────────────────────────────────────── */
+      #cherry-footer .ft-hours {
+        margin-top: 28px;
+      }
+
+      #cherry-footer .ft-hours-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--white-06);
+      }
+
+      #cherry-footer .ft-hours-day {
+        color: var(--white-40);
+        font-size: 12px;
+        letter-spacing: 0.10em;
+      }
+
+      #cherry-footer .ft-hours-time {
+        color: var(--white-60);
+        font-size: 12px;
+        letter-spacing: 0.10em;
+        font-weight: 500;
+      }
+
+      #cherry-footer .ft-open-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      #cherry-footer .ft-open-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        flex-shrink: 0;
+        animation: ftPulse 2.2s infinite ease-in-out;
+      }
+
+      @keyframes ftPulse {
+
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.35;
+          transform: scale(0.85);
+        }
+      }
+
+      #cherry-footer .ft-open-text {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(34, 197, 94, 0.75);
+      }
+
+      /* ── Contact info ───────────────────────────────────────────── */
+      #cherry-footer .ft-contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      #cherry-footer .ft-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      #cherry-footer .ft-contact-icon {
+        color: rgba(224, 85, 85, 0.75);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      #cherry-footer .ft-contact-text {
+        color: var(--white-40);
+        font-size: 12.5px;
+        line-height: 1.65;
+        transition: color 0.22s;
+        text-decoration: none;
+      }
+
+      #cherry-footer .ft-contact-item:hover .ft-contact-text {
+        color: var(--white-60);
+      }
+
+      /* ── Google Maps button ─────────────────────────────────────── */
+      #cherry-footer .ft-map-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 9px 20px;
+        font-family: var(--font-body);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--white-40);
+        border: 1px solid var(--white-10);
+        border-radius: 9999px;
+        text-decoration: none;
+        transition: color 0.25s, border-color 0.25s, background 0.25s;
+      }
+
+      #cherry-footer .ft-map-btn:hover {
+        color: #fff;
+        border-color: var(--white-40);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* ── Divider ────────────────────────────────────────────────── */
+      #cherry-footer .ft-divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 40px 0 22px;
+      }
+
+      #cherry-footer .ft-divider-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      /* ── Bottom bar ─────────────────────────────────────────────── */
+      #cherry-footer .ft-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #cherry-footer .ft-copy {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.20);
+      }
+
+      /* ── Responsive ─────────────────────────────────────────────── */
+      @media (max-width: 991px) {
+        #cherry-footer .ft-inner {
+          padding: 50px 0 28px;
+        }
+
+        #cherry-footer .ft-col {
+          margin-bottom: 36px;
+        }
+
+        #cherry-footer .ft-tagline {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        #cherry-footer .ft-inner {
+          padding: 40px 0 24px;
+        }
+
+        #cherry-footer .ft-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        #cherry-footer .ft-col {
+          margin-bottom: 32px;
+        }
+
+        #cherry-footer .ft-heading {
+          margin-bottom: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #cherry-footer .ft-hours-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+        }
+      }
+
+      .cherry-float-actions {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 9998;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .cherry-float-btn {
+        width: 54px;
+        height: 54px;
+        border: none;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+      }
+
+      .cherry-float-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 36px rgba(0, 0, 0, 0.22);
+      }
+
+      .cherry-float-btn:focus-visible {
+        outline: 3px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 3px;
+      }
+
+      .cherry-float-btn--whatsapp {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: #fff;
+      }
+
+      .cherry-float-btn--top {
+        background: linear-gradient(135deg, #8b1a1a, #e05555);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      @media (max-width: 767px) {
+        .cherry-float-actions {
+          right: 14px;
+          bottom: 14px;
+          gap: 10px;
+        }
+
+        .cherry-float-btn {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    </style>
+
+    <!-- ═══════════════════ FOOTER HTML ═══════════════════ -->
+    <footer id="cherry-footer">
+      <div class="ft-inner">
+        <div class="container">
+          <div class="row">
+
+            <!-- ── Col 1: Brand ───────────────────────────── -->
+            <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+              <a href="index.html" class="ft-brand-logo">
+                <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo" width="80" height="80"
+                  style="object-fit: contain;">
+              </a>
+              <p class="ft-tagline fs-6">
+                Not just a meal — a memory.<br>
+                Where every dish tells a story of heritage, warmth &amp; craft.
+              </p>
+
+              <!--
+           <div class="ft-badges">
+            <span class="ft-badge">ISO 9001:2015</span>
+            <span class="ft-badge">ISO 22000:2018</span>
+            <span class="ft-badge">Hygiene Certified</span>
+          </div>
+          -->
+
+
+              <div class="ft-socials">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/theprincerestaurant" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Facebook">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://instagram.com/theprincerestaurant" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Instagram">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer" class="ft-social"
+                  aria-label="WhatsApp">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path
+                      d="M11.99 2C6.476 2 2 6.477 2 11.99c0 1.79.467 3.47 1.284 4.926L2 22l5.233-1.237A9.96 9.96 0 0 0 12 22c5.514 0 9.99-4.476 9.99-9.99C21.99 6.477 17.504 2 11.99 2z" />
+                  </svg>
+                </a>
+                <!-- Google Maps -->
+                <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Google Maps">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                </a>
+              </div>
+
+            </div><!-- /col brand -->
+
+            <!-- ── Col 2: Links + Hours ────────────────────── -->
+            <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+              <span class="ft-heading">Quick Links</span>
+              <ul class="ft-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+
+              <!-- <div class="ft-hours">
+            <span class="ft-heading">Opening Hours</span>
+            <div class="ft-hours-row">
+              <span class="ft-hours-day">Monday – Sunday</span>
+              <span class="ft-hours-time">11:00 AM – 11:00 PM</span>
+            </div>
+            <div class="ft-open-badge">
+              <span class="ft-open-dot"></span>
+              <span class="ft-open-text">Open Now · Every Day</span>
+            </div>
+          </div> -->
+
+            </div><!-- /col links -->
+
+            <!-- ── Col 3: Contact ──────────────────────────── -->
+            <div class="col-12 col-md-12 col-lg-4 ft-col">
+
+              <span class="ft-heading">Find Us</span>
+
+              <div class="ft-contact-list">
+
+                <!-- Address -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                  <span class="ft-contact-text fs-6">
+                    795/519 Prem Nagar, Sonamui,<br>
+                    IIT Prembazar Gate, Kharagpur, WB 721306
+                  </span>
+                </div>
+
+                <!-- Phone -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                         19.79 19.79 0 0 1-8.63-3.07
+                         A19.5 19.5 0 0 1 4.69 12
+                         a19.79 19.79 0 0 1-3.07-8.67
+                         A2 2 0 0 1 3.6 1.27h3
+                         a2 2 0 0 1 2 1.72
+                         c.127.96.361 1.903.7 2.81
+                         a2 2 0 0 1-.45 2.11L7.91 8.96
+                         a16 16 0 0 0 6 6l.96-.96
+                         a2 2 0 0 1 2.11-.45
+                         c.907.339 1.85.573 2.81.7
+                         A2 2 0 0 1 21.73 16.92z" />
+                  </svg>
+                  <a href="tel:+916294142257" class="ft-contact-text fs-6">
+                    +91 6294 142 257
+                  </a>
+                </div>
+
+                <!-- Email -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12
+                         c0 1.1-.9 2-2 2H4
+                         c-1.1 0-2-.9-2-2V6
+                         c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  <a href="mailto:sheikhfirozzz2121@gmail.com" class="ft-contact-text fs-6">
+                    sheikhfirozzz2121@gmail.com
+                  </a>
+                </div>
+
+                <!-- Website -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10
+                         15.3 15.3 0 0 1-4 10
+                         15.3 15.3 0 0 1-4-10
+                         15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                  <a href="https://theprincerestaurant.in" target="_blank" rel="noopener noreferrer"
+                    class="ft-contact-text fs-6">
+                    www.theprincerestaurant.in
+                  </a>
+                </div>
+
+              </div><!-- /contact list -->
+
+              <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
+                class="ft-map-btn">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2C8.13 2 5 5.13 5 10c0 5.25 7 12 7 12s7-6.75 7-12c0-4.87-3.13-7-7-7z" />
+                </svg>
+                Get Directions on Google Maps
+              </a>
+
+            </div><!-- /col contact -->
+
+          </div><!-- /.row -->
+
+          <!-- ── Divider ── -->
+          <div class="ft-divider">
+            <div class="ft-divider-line"></div>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="10" cy="10" r="9" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+              <circle cx="10" cy="10" r="2.8" fill="rgba(224,85,85,0.55)" />
+            </svg>
+            <div class="ft-divider-line"></div>
+          </div>
+
+          <!-- ── Bottom bar ── -->
+          <div class="ft-bottom d-flex flex-wrap align-items-center">
+
+            <!-- Left -->
+            <div class="ft-copy flex-fill text-start">
+              &copy; <span class="ft-year"></span>
+              The Prince Restaurant &amp; Restaurant &mdash; All rights reserved.
+              Made with <i class="bi bi-heart-fill text-danger"></i> by
+              <a href="https://nexvoraweb.in/" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                Nexvora
+              </a>
+            </div>
+
+            <!-- Center -->
+            <div class="ft-copy text-center">
+              Kharagpur, West Bengal, India
+            </div>
+
+            <!-- Right (empty for balance, optional) -->
+            <div class="flex-fill"></div>
+
+          </div>
+
+        </div><!-- /.container -->
+      </div><!-- /.ft-inner -->
+    </footer>
+
+    <div class="cherry-float-actions" aria-label="Quick actions">
+      <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer"
+        class="cherry-float-btn cherry-float-btn--whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M16.6 14.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.5.1-.2-.1-1-.4-1.8-1.1-.7-.6-1.2-1.3-1.3-1.5-.1-.2 0-.4.1-.5l.3-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.4 3.8 3.4.5.2 1 .4 1.3.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1 0-.1-.2-.2-.4-.3Z" />
+          <path
+            d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z" />
+        </svg>
+      </a>
+
+      <button type="button" id="cherry-scroll-top" class="cherry-float-btn cherry-float-btn--top"
+        aria-label="Scroll to top" title="Scroll to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="m5 12 7-7 7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ═══════════════════ FOOTER JS ═══════════════════ -->
+    <script>
+      /* Auto year */
+      document.querySelectorAll('.ft-year').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    </script>
+
+  </div>
+
+
+  <!-- ── Bootstrap 5 JS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    /* Always start About page at top, even if the browser tries to restore
+       the previous scroll position on refresh/back navigation. */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    if (window.location.hash) {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+
+    function resetAboutPageScroll() {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
+    function enforceAboutPageTop() {
+      resetAboutPageScroll();
+      requestAnimationFrame(function () {
+        resetAboutPageScroll();
+        setTimeout(resetAboutPageScroll, 60);
+        setTimeout(resetAboutPageScroll, 180);
+        setTimeout(resetAboutPageScroll, 400);
+        setTimeout(resetAboutPageScroll, 800);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', enforceAboutPageTop);
+    window.addEventListener('load', enforceAboutPageTop);
+    window.addEventListener('pageshow', enforceAboutPageTop);
+    window.addEventListener('pagehide', resetAboutPageScroll);
+    window.addEventListener('beforeunload', resetAboutPageScroll);
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', function () {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = (scrollTop / docHeight) * 100;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    })();
+
+
+    /* ============================================================
+       SCROLL REVEAL — IntersectionObserver
+    ============================================================ */
+    (function () {
+      var options = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ============================================================
+       NUMBER COUNTER — counts up from 0 when scrolled into view
+    ============================================================ */
+    (function () {
+      var counters = document.querySelectorAll('.stat-number[data-target]');
+      var counted = {};
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var id = el.dataset.target;
+          if (counted[id]) return;
+          counted[id] = true;
+
+          var target = parseInt(el.dataset.target, 10);
+          var suffix = el.dataset.suffix || '';
+          var start = 0;
+          var duration = 1800;
+          var startTime = null;
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            /* Ease out cubic */
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(eased * target);
+            el.textContent = current + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target + suffix;
+            }
+          }
+
+          requestAnimationFrame(step);
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(function (el) { observer.observe(el); });
+    })();
+
+
+
+
+
+
+    /* ============================================================
+       NAVBAR INITIALIZATION
+       All navbar JS runs directly since elements are inlined in DOM
+       ============================================================ */
+    (function () {
+      var wrapper = document.getElementById('cherry-nav-wrapper');
+      var hamburger = document.getElementById('cHamburger');
+      var mobileMenu = document.getElementById('cMobileMenu');
+      var isOpen = false;
+
+      if (!wrapper || !hamburger || !mobileMenu) {
+        console.error('Navbar elements not found');
+        return;
+      }
+
+      /* Keep navbar fixed during mobile address-bar show/hide */
+      (function syncNavbarToVisualViewport() {
+        if (!window.visualViewport) return;
+
+        var vv = window.visualViewport;
+
+        function update() {
+          var t = vv.offsetTop || 0;
+          wrapper.style.setProperty('--vv-top', t + 'px');
+        }
+
+        vv.addEventListener('scroll', update, { passive: true });
+        vv.addEventListener('resize', update, { passive: true });
+        update();
+      })();
+
+      /* Scroll → darken wrapper */
+      wrapper.classList.remove('scrolled-wrapper');
+
+      /* Open mobile menu */
+      function openMenu() {
+        isOpen = true;
+        hamburger.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        wrapper.classList.add('menu-open-wrapper');
+      }
+
+      /* Close mobile menu */
+      function closeMenu() {
+        isOpen = false;
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        /* Delay radius reset until animation completes */
+        setTimeout(function () {
+          if (!isOpen) wrapper.classList.remove('menu-open-wrapper');
+        }, 380);
+      }
+
+      /* Hamburger click */
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      /* Click outside navbar → close */
+      document.addEventListener('click', function (e) {
+        if (isOpen && !wrapper.contains(e.target)) closeMenu();
+      });
+
+      /* Tap a mobile link → close */
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      /* Escape key → close */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) closeMenu();
+      });
+
+      /* Highlight active nav link using body data-page attribute */
+      var page = document.body.getAttribute('data-page') || '';
+      if (page) {
+        document.querySelectorAll('[data-page="' + page + '"]')
+          .forEach(function (el) { el.classList.add('active'); });
+      }
+    })();
+
+
+  </script>
+
+  <!-- DevTools / Source Code Protection -->
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      const keyCode = e.keyCode || e.which;
+      const key = (e.key || '').toLowerCase();
+      const isInspectKey = keyCode === 73 || key === 'i' || 
+                           keyCode === 74 || key === 'j' || 
+                           keyCode === 67 || key === 'c' || 
+                           keyCode === 85 || key === 'u';
+      const isF12 = keyCode === 123 || key === 'f12';
+
+      if (
+        isF12 ||
+        (e.ctrlKey && e.shiftKey && isInspectKey) || // Ctrl+Shift+I/J/C
+        (e.ctrlKey && (keyCode === 85 || key === 'u')) || // Ctrl+U (View Source)
+        (e.metaKey && e.altKey && isInspectKey) || // Cmd+Alt+I/J/C/U (Mac)
+        (e.metaKey && e.shiftKey && (keyCode === 67 || key === 'c')) // Cmd+Shift+C (Mac Element inspect)
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    });
+
+    // DevTools detection with instant redirect to about:blank to hide all code
+    (function () {
+      function protect() {
+        try {
+          window.location.replace("about:blank");
+        } catch(e) {}
+      }
+
+      // 1. Size-based detection (for docked DevTools)
+      function checkSize() {
+        const threshold = 160;
+        const widthDev = window.outerWidth - window.innerWidth > threshold;
+        const heightDev = window.outerHeight - window.innerHeight > threshold;
+        if (widthDev || heightDev) {
+          protect();
+        }
+      }
+
+      // 2. Console-based detection (for undocked DevTools)
+      const element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function () {
+          protect();
+        }
+      });
+
+      setInterval(function () {
+        checkSize();
+        console.log(element);
+        console.clear();
+      }, 250);
+    })();
+  </script>
+
+</body>
+
+</html>

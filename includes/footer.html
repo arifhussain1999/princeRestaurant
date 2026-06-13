@@ -1,0 +1,652 @@
+<!-- ============================================================
+     The Prince Restaurant — FOOTER
+     File location: includes/footer.html
+     Stack: Bootstrap 5 + Custom CSS + Vanilla JS
+     ============================================================ -->
+
+<style>
+  /* ── Footer Variables ───────────────────────────────────────── */
+  #cherry-footer {
+    --cherry-dark  : #3a0a0a;
+    --cherry-mid   : #5c1010;
+    --cherry-red   : #e05555;
+    --white-85     : rgba(255, 255, 255, 0.85);
+    --white-60     : rgba(255, 255, 255, 0.60);
+    --white-40     : rgba(255, 255, 255, 0.40);
+    --white-20     : rgba(255, 255, 255, 0.20);
+    --white-10     : rgba(255, 255, 255, 0.10);
+    --white-06     : rgba(255, 255, 255, 0.06);
+    --font-display : 'Playfair Display', Georgia, serif;
+    --font-body    : 'Jost', sans-serif;
+
+    background  : #3a0a0a;
+    font-family : var(--font-body);
+    border-top  : 1px solid rgba(255,255,255,0.07);
+    position    : relative;
+    overflow    : hidden;
+  }
+
+  /* ── Ambient glow ───────────────────────────────────────────── */
+  #cherry-footer::before {
+    content    : '';
+    position   : absolute;
+    inset      : 0;
+    background :
+      radial-gradient(ellipse at 10% 60%, rgba(139,26,26,0.20) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 40%, rgba(139,26,26,0.14) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* ── Inner container ────────────────────────────────────────── */
+  #cherry-footer .ft-inner {
+    position: relative;
+    z-index : 1;
+    padding : 60px 0 30px;
+  }
+
+  /* ── Section heading ────────────────────────────────────────── */
+  #cherry-footer .ft-heading {
+    display       : block;
+    font-family   : var(--font-display);
+    font-size     : 13px;
+    font-weight   : 400;
+    color         : var(--white-85);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom : 22px;
+  }
+
+  /* ── Brand column ───────────────────────────────────────────── */
+  #cherry-footer .ft-brand-logo {
+    display        : flex;
+    align-items    : center;
+    gap            : 10px;
+    text-decoration: none;
+    margin-bottom  : 0;
+  }
+
+  #cherry-footer .ft-brand-name {
+    font-family   : var(--font-display);
+    font-size     : 16px;
+    font-weight   : 700;
+    color         : #fff;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    display       : block;
+    line-height   : 1;
+  }
+
+  #cherry-footer .ft-brand-sub {
+    font-size     : 8px;
+    font-weight   : 300;
+    color         : var(--white-40);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display       : block;
+    margin-top    : 4px;
+  }
+
+  #cherry-footer .ft-tagline {
+    color      : var(--white-40);
+    font-size  : 12.5px;
+    line-height: 1.80;
+    max-width  : 250px;
+    margin-bottom: 18px;
+  }
+
+  /* ── ISO badges ─────────────────────────────────────────────── */
+  #cherry-footer .ft-badges {
+    display    : flex;
+    flex-wrap  : wrap;
+    gap        : 7px;
+    margin-bottom: 22px;
+  }
+
+  #cherry-footer .ft-badge {
+    font-size     : 8.5px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color         : var(--white-40);
+    border        : 1px solid var(--white-10);
+    border-radius : 4px;
+    padding       : 3px 9px;
+  }
+
+  /* ── Social icons ───────────────────────────────────────────── */
+  #cherry-footer .ft-socials {
+    display: flex;
+    gap    : 8px;
+  }
+
+  #cherry-footer .ft-social {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 36px;
+    height         : 36px;
+    border-radius  : 50%;
+    border         : 1px solid var(--white-10);
+    color          : var(--white-40);
+    text-decoration: none;
+    transition     : color 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+
+  #cherry-footer .ft-social:hover {
+    color       : #fff;
+    border-color: var(--white-40);
+    background  : rgba(255,255,255,0.06);
+    transform   : translateY(-2px);
+  }
+
+  /* ── Nav links ──────────────────────────────────────────────── */
+  #cherry-footer .ft-links {
+    list-style: none;
+    margin    : 0;
+    padding   : 0;
+    display   : flex;
+    flex-direction: column;
+    gap       : 4px;
+  }
+
+  #cherry-footer .ft-links a {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 10px;
+    padding        : 6px 0;
+    font-size      : 12px;
+    font-weight    : 400;
+    letter-spacing : 0.16em;
+    text-transform : uppercase;
+    text-decoration: none;
+    color          : var(--white-40);
+    transition     : color 0.22s, gap 0.22s;
+  }
+
+  #cherry-footer .ft-links a::before {
+    content   : '';
+    display   : inline-block;
+    width     : 14px;
+    height    : 1px;
+    background: var(--white-20);
+    flex-shrink: 0;
+    transition: width 0.25s, background 0.25s;
+  }
+
+  #cherry-footer .ft-links a:hover {
+    color: #fff;
+    gap  : 14px;
+  }
+
+  #cherry-footer .ft-links a:hover::before {
+    width     : 22px;
+    background: var(--white-60);
+  }
+
+  /* ── Opening hours ──────────────────────────────────────────── */
+  #cherry-footer .ft-hours {
+    margin-top: 28px;
+  }
+
+  #cherry-footer .ft-hours-row {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : 9px 0;
+    border-bottom  : 1px solid var(--white-06);
+  }
+
+  #cherry-footer .ft-hours-day  { color: var(--white-40); font-size: 12px; letter-spacing: 0.10em; }
+  #cherry-footer .ft-hours-time { color: var(--white-60); font-size: 12px; letter-spacing: 0.10em; font-weight: 500; }
+
+  #cherry-footer .ft-open-badge {
+    display    : flex;
+    align-items: center;
+    gap        : 8px;
+    margin-top : 12px;
+  }
+
+  #cherry-footer .ft-open-dot {
+    width        : 7px;
+    height       : 7px;
+    border-radius: 50%;
+    background   : #22c55e;
+    flex-shrink  : 0;
+    animation    : ftPulse 2.2s infinite ease-in-out;
+  }
+
+  @keyframes ftPulse {
+    0%, 100% { opacity: 1;    transform: scale(1);    }
+    50%      { opacity: 0.35; transform: scale(0.85); }
+  }
+
+  #cherry-footer .ft-open-text {
+    font-size     : 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color         : rgba(34, 197, 94, 0.75);
+  }
+
+  /* ── Contact info ───────────────────────────────────────────── */
+  #cherry-footer .ft-contact-list {
+    display       : flex;
+    flex-direction: column;
+    gap           : 16px;
+  }
+
+  #cherry-footer .ft-contact-item {
+    display    : flex;
+    align-items: flex-start;
+    gap        : 12px;
+  }
+
+  #cherry-footer .ft-contact-icon {
+    color      : rgba(224, 85, 85, 0.75);
+    flex-shrink: 0;
+    margin-top : 1px;
+  }
+
+  #cherry-footer .ft-contact-text {
+    color      : var(--white-40);
+    font-size  : 12.5px;
+    line-height: 1.65;
+    transition : color 0.22s;
+    text-decoration: none;
+  }
+
+  #cherry-footer .ft-contact-item:hover .ft-contact-text {
+    color: var(--white-60);
+  }
+
+  /* ── Google Maps button ─────────────────────────────────────── */
+  #cherry-footer .ft-map-btn {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 8px;
+    margin-top     : 18px;
+    padding        : 9px 20px;
+    font-family    : var(--font-body);
+    font-size      : 10px;
+    letter-spacing : 0.16em;
+    text-transform : uppercase;
+    color          : var(--white-40);
+    border         : 1px solid var(--white-10);
+    border-radius  : 9999px;
+    text-decoration: none;
+    transition     : color 0.25s, border-color 0.25s, background 0.25s;
+  }
+
+  #cherry-footer .ft-map-btn:hover {
+    color       : #fff;
+    border-color: var(--white-40);
+    background  : rgba(255,255,255,0.05);
+  }
+
+  /* ── Divider ────────────────────────────────────────────────── */
+  #cherry-footer .ft-divider {
+    display    : flex;
+    align-items: center;
+    gap        : 14px;
+    margin     : 40px 0 22px;
+  }
+
+  #cherry-footer .ft-divider-line {
+    flex      : 1;
+    height    : 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  /* ── Bottom bar ─────────────────────────────────────────────── */
+  #cherry-footer .ft-bottom {
+    display        : flex;
+    flex-wrap      : wrap;
+    justify-content: space-between;
+    align-items    : center;
+    gap            : 10px;
+  }
+
+  #cherry-footer .ft-copy {
+    font-size     : 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color         : rgba(255,255,255,0.20);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 991px) {
+    #cherry-footer .ft-inner { padding: 50px 0 28px; }
+    #cherry-footer .ft-col   { margin-bottom: 36px; }
+    #cherry-footer .ft-tagline { max-width: 100%; }
+  }
+
+  @media (max-width: 767px) {
+    #cherry-footer .ft-inner   { padding: 40px 0 24px; }
+    #cherry-footer .ft-bottom  { flex-direction: column; text-align: center; }
+    #cherry-footer .ft-col     { margin-bottom: 32px; }
+    #cherry-footer .ft-heading { margin-bottom: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    #cherry-footer .ft-hours-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+  }
+
+  .cherry-float-actions {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .cherry-float-btn {
+    width: 54px;
+    height: 54px;
+    border: none;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .cherry-float-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 36px rgba(0, 0, 0, 0.22);
+  }
+
+  .cherry-float-btn:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 3px;
+  }
+
+  .cherry-float-btn--whatsapp {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+  }
+
+  .cherry-float-btn--top {
+    background: linear-gradient(135deg, #8b1a1a, #e05555);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    .cherry-float-actions {
+      right: 14px;
+      bottom: 14px;
+      gap: 10px;
+    }
+
+    .cherry-float-btn {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+</style>
+
+<!-- ═══════════════════ FOOTER HTML ═══════════════════ -->
+<footer id="cherry-footer">
+  <div class="ft-inner">
+    <div class="container">
+      <div class="row">
+
+        <!-- ── Col 1: Brand ───────────────────────────── -->
+        <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+          <a href="index.html" class="ft-brand-logo">
+            <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo" width="94" height="94" style="object-fit: contain;">
+            
+          </a>
+          <p class="ft-tagline fs-6">
+            Not just a meal — a memory.<br>
+            Where every dish tells a story of heritage, warmth &amp; craft.
+          </p>
+
+          <!--
+           <div class="ft-badges">
+            <span class="ft-badge">ISO 9001:2015</span>
+            <span class="ft-badge">ISO 22000:2018</span>
+            <span class="ft-badge">Hygiene Certified</span>
+          </div>
+          -->
+
+          <div class="ft-socials">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/theprincerestaurant"
+               target="_blank" rel="noopener noreferrer"
+               class="ft-social" aria-label="Facebook">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/theprincerestaurant"
+               target="_blank" rel="noopener noreferrer"
+               class="ft-social" aria-label="Instagram">
+              <svg width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="1.5" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/916294142257"
+               target="_blank" rel="noopener noreferrer"
+               class="ft-social" aria-label="WhatsApp">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M11.99 2C6.476 2 2 6.477 2 11.99c0 1.79.467 3.47 1.284 4.926L2 22l5.233-1.237A9.96 9.96 0 0 0 12 22c5.514 0 9.99-4.476 9.99-9.99C21.99 6.477 17.504 2 11.99 2z"/>
+              </svg>
+            </a>
+            <!-- Google Maps -->
+            <a href="https://maps.app.goo.gl/eVDxFc8JUjsqDaVt8"
+               target="_blank" rel="noopener noreferrer"
+               class="ft-social" aria-label="Google Maps">
+              <svg width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="1.6" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+            </a>
+          </div>
+
+        </div><!-- /col brand -->
+
+        <!-- ── Col 2: Links + Hours ────────────────────── -->
+        <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+          <span class="ft-heading">Quick Links</span>
+          <ul class="ft-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="menu.html">Our Menu</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+
+           <!-- <div class="ft-hours">
+            <span class="ft-heading">Opening Hours</span>
+            <div class="ft-hours-row">
+              <span class="ft-hours-day">Monday – Sunday</span>
+              <span class="ft-hours-time">11:00 AM – 11:00 PM</span>
+            </div>
+            <div class="ft-open-badge">
+              <span class="ft-open-dot"></span>
+              <span class="ft-open-text">Open Now · Every Day</span>
+            </div>
+          </div> -->
+
+        </div><!-- /col links -->
+
+        <!-- ── Col 3: Contact ──────────────────────────── -->
+        <div class="col-12 col-md-12 col-lg-4 ft-col">
+
+          <span class="ft-heading">Find Us</span>
+
+          <div class="ft-contact-list">
+
+            <!-- Address -->
+            <div class="ft-contact-item">
+              <svg class="ft-contact-icon" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              <span class="ft-contact-text fs-6">
+                88QP+V5J, Puratan Bazar,<br>
+                Kharagpur, West Bengal 721301
+              </span>
+            </div>
+
+            <!-- Phone -->
+            <div class="ft-contact-item">
+              <svg class="ft-contact-icon" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                         19.79 19.79 0 0 1-8.63-3.07
+                         A19.5 19.5 0 0 1 4.69 12
+                         a19.79 19.79 0 0 1-3.07-8.67
+                         A2 2 0 0 1 3.6 1.27h3
+                         a2 2 0 0 1 2 1.72
+                         c.127.96.361 1.903.7 2.81
+                         a2 2 0 0 1-.45 2.11L7.91 8.96
+                         a16 16 0 0 0 6 6l.96-.96
+                         a2 2 0 0 1 2.11-.45
+                         c.907.339 1.85.573 2.81.7
+                         A2 2 0 0 1 21.73 16.92z"/>
+              </svg>
+              <a href="tel:+916294142257" class="ft-contact-text fs-6">
+                +91 6294 142 257
+              </a>
+            </div>
+
+            <!-- Email -->
+            <div class="ft-contact-item">
+              <svg class="ft-contact-icon" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12
+                         c0 1.1-.9 2-2 2H4
+                         c-1.1 0-2-.9-2-2V6
+                         c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <a href="mailto:sheikhfirozzz2121@gmail.com" class="ft-contact-text fs-6">
+                sheikhfirozzz2121@gmail.com
+              </a>
+            </div>
+
+            <!-- Website -->
+            <div class="ft-contact-item">
+              <svg class="ft-contact-icon" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10
+                         15.3 15.3 0 0 1-4 10
+                         15.3 15.3 0 0 1-4-10
+                         15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <a href="https://theprincerestaurant.in"
+                 target="_blank" rel="noopener noreferrer"
+                 class="ft-contact-text fs-6">
+                www.theprincerestaurant.in
+              </a>
+            </div>
+
+          </div><!-- /contact list -->
+
+          <a href="https://maps.app.goo.gl/eVDxFc8JUjsqDaVt8"
+             target="_blank" rel="noopener noreferrer"
+             class="ft-map-btn">
+            <svg width="12" height="12" fill="none" stroke="currentColor"
+                 stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="10" r="3"/>
+              <path d="M12 2C8.13 2 5 5.13 5 10c0 5.25 7 12 7 12s7-6.75 7-12c0-4.87-3.13-7-7-7z"/>
+            </svg>
+            Get Directions on Google Maps
+          </a>
+
+        </div><!-- /col contact -->
+
+      </div><!-- /.row -->
+
+      <!-- ── Divider ── -->
+      <div class="ft-divider">
+        <div class="ft-divider-line"></div>
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="9"
+                  stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+          <circle cx="10" cy="10" r="2.8" fill="rgba(224,85,85,0.55)"/>
+        </svg>
+        <div class="ft-divider-line"></div>
+      </div>
+
+       <!-- ── Bottom bar ── -->
+     <div class="ft-bottom d-flex flex-wrap align-items-center">
+
+  <!-- Left -->
+  <div class="ft-copy flex-fill text-start">
+    &copy; <span class="ft-year"></span>
+    The Prince Restaurant &mdash; All rights reserved.
+    Made with <i class="bi bi-heart-fill text-danger"></i> by
+    <a href="https://nexvoraweb.in/" target="_blank" rel="noopener" class="text-decoration-none">
+      Nexvora
+    </a>
+  </div>
+
+  <!-- Center -->
+  <div class="ft-copy text-center">
+    Kharagpur, West Bengal, India
+  </div>
+
+  <!-- Right (empty for balance, optional) -->
+  <div class="flex-fill"></div>
+
+</div>
+
+    </div><!-- /.container -->
+  </div><!-- /.ft-inner -->
+</footer>
+
+<div class="cherry-float-actions" aria-label="Quick actions">
+  <a
+    href="https://wa.me/916294142257"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="cherry-float-btn cherry-float-btn--whatsapp"
+    aria-label="Chat on WhatsApp"
+    title="Chat on WhatsApp"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.6 14.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.5.1-.2-.1-1-.4-1.8-1.1-.7-.6-1.2-1.3-1.3-1.5-.1-.2 0-.4.1-.5l.3-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.4 3.8 3.4.5.2 1 .4 1.3.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1 0-.1-.2-.2-.4-.3Z"/>
+      <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/>
+    </svg>
+  </a>
+
+  <button
+    type="button"
+    id="cherry-scroll-top"
+    class="cherry-float-btn cherry-float-btn--top"
+    aria-label="Scroll to top"
+    title="Scroll to top"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5"></path>
+      <path d="m5 12 7-7 7 7"></path>
+    </svg>
+  </button>
+</div>
+
+<!-- ═══════════════════ FOOTER JS ═══════════════════ -->
+<script>
+  /* Auto year */
+  document.querySelectorAll('.ft-year').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+</script>

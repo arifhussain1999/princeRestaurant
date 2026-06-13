@@ -1,0 +1,482 @@
+<!-- includes/navbar.html -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Jost:wght@300;400;500&display=swap"
+  rel="stylesheet">
+
+<style>
+  #cherry-nav-wrapper {
+    position: fixed !important;
+    top: calc(14px + var(--vv-top, 0px)) !important;
+    left: max(env(safe-area-inset-left, 0px), 12px) !important;
+    right: max(env(safe-area-inset-right, 0px), 12px) !important;
+    transform: none !important;
+    z-index: 99999 !important;
+    width: auto;
+    max-width: 1140px;
+    backface-visibility: hidden;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Pill ── */
+  .c-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 22px;
+    height: 64px;
+    background: rgba(107, 20, 20, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    transition: background 0.4s, border-radius 0.35s, box-shadow 0.4s;
+    width: 100%;
+    max-width: 1140px;
+  }
+
+  .c-bar.scrolled {
+    background: rgba(50, 8, 8, 0.98);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .c-bar.nav-open {
+    border-radius: 20px;
+  }
+
+  /* ── Logo ── */
+  .c-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .c-logo img {
+    display: block;
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .c-logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1;
+  }
+
+  .c-logo-sub {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 3px;
+  }
+
+  /* ── Desktop nav links ── */
+  .c-nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 28px;
+  }
+
+  .c-nav-links a {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 22px;
+    line-height: 22px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.25s;
+  }
+
+  .c-nav-links a::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: top 0.28s ease;
+  }
+
+  .c-nav-links a:hover {
+    color: transparent;
+  }
+
+  .c-nav-links a:hover::after {
+    top: 0;
+  }
+
+  .c-nav-links a.active {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  /* ── Reserve button ── */
+  .c-btn-reserve {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .c-btn-reserve:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Hamburger ── */
+  .c-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .c-hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+  }
+
+  .c-hamburger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background: #ffffff;
+  }
+
+  .c-hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .c-hamburger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background: #ffffff;
+  }
+
+  /* ── Mobile dropdown ── */
+  .c-mobile-menu {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    width: 100%;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    /* CRITICAL: same dark background as pill so text is visible */
+    background: transparent;
+  }
+
+  .c-mobile-menu.is-open {
+    max-height: 520px;
+    opacity: 1;
+    padding: 14px 8px 16px;
+    overflow-y: auto;
+  }
+
+  .c-mobile-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.10);
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .c-mobile-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .c-mobile-links li {
+    width: 100%;
+  }
+
+  /* ── KEY FIX: white text on dark pill background ── */
+  .c-mobile-links a {
+    display: block;
+    width: 100%;
+    padding: 11px 16px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75) !important;
+    /* force white text */
+    border-radius: 10px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .c-mobile-links a:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .c-mobile-links a.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06);
+    font-weight: 600;
+  }
+
+  .c-mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+    padding: 13px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff !important;
+    background: rgba(139, 26, 26, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: normal;
+    line-height: 1.35;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .c-mobile-cta:hover {
+    background: rgba(139, 26, 26, 0.75);
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #ffffff !important;
+  }
+
+  /* ── Breakpoints ── */
+  @media (min-width: 1200px) {
+    .c-hamburger {
+      display: none !important;
+    }
+
+    .c-mobile-menu {
+      display: none !important;
+    }
+
+    .c-nav-links {
+      gap: 32px;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .c-hamburger {
+      display: none !important;
+    }
+
+    .c-mobile-menu {
+      display: none !important;
+    }
+
+    .c-nav-links {
+      gap: 20px;
+    }
+
+    .c-nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+
+    .c-btn-reserve {
+      padding: 8px 14px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+    }
+
+    .c-logo-name {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .c-nav-links {
+      display: none !important;
+    }
+
+    .c-btn-reserve {
+      display: none !important;
+    }
+
+    .c-hamburger {
+      display: flex !important;
+    }
+
+    .c-bar {
+      padding: 0 16px;
+      height: 58px;
+    }
+
+    .c-logo-sub {
+      display: none;
+    }
+
+    /* Reduce scroll jank on mobile browsers */
+    #cherry-nav-wrapper {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .c-logo img {
+      height: 44px;
+      width: auto;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .c-bar {
+      padding: 0 12px;
+      height: 54px;
+    }
+
+    .c-logo-name {
+      font-size: 15px;
+    }
+
+    .c-logo img {
+      height: 40px;
+      width: auto;
+    }
+  }
+
+  /* Prevent horizontal overflow on entire page */
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Prevent stat cards from overflowing on mobile */
+  @media (max-width: 480px) {
+    .stats-bar .container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .stat-card {
+      padding: 20px 12px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      word-break: break-word;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+  }
+</style>
+
+<!-- HTML -->
+<div id="cherry-nav-wrapper">
+
+  <div class="c-bar" id="cBar">
+
+    <!-- Logo -->
+    <a href="index.html" class="c-logo">
+      <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo" width="94" height="94" style="object-fit: contain;">
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="c-nav-links">
+      <li><a href="index.html" data-text="Home" data-page="home">Home</a></li>
+      <li><a href="about.html" data-text="About" data-page="about">About</a></li>
+      <li><a href="menu.html" data-text="Menu" data-page="menu">Menu</a></li>
+
+      <li><a href="contact.html" data-text="Contact" data-page="contact">Contact</a></li>
+    </ul>
+
+    <!-- Reserve button (desktop/tablet) -->
+    <a href="tel:+916294142257" class="c-btn-reserve">
+      Reserve a Table
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button class="c-hamburger" id="cHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div><!-- /.c-bar -->
+
+  <!-- Mobile dropdown (INSIDE the pill wrapper so it inherits dark bg) -->
+  <div class="c-mobile-menu" id="cMobileMenu" aria-hidden="true">
+    <div class="c-mobile-divider"></div>
+
+    <ul class="c-mobile-links">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="about.html" data-page="about">About</a></li>
+      <li><a href="menu.html" data-page="menu">Menu</a></li>
+      <li><a href="contact.html" data-page="contact">Contact</a></li>
+    </ul>
+
+    <div style="padding: 0 8px;">
+      <a href="tel:+916294142257" class="c-mobile-cta">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
+        </svg>
+        Reserve a Table &nbsp;+91 62941 42257
+      </a>
+    </div>
+  </div>
+
+</div><!-- /#cherry-nav-wrapper -->

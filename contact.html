@@ -1,0 +1,3037 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https://images.unsplash.com; video-src 'self'; frame-src https://www.google.com; connect-src 'self';">
+  <title>Contact Us — The Prince Restaurant, Kharagpur</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- ── Bootstrap 5 CSS ── -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- ── Bootstrap Icons ── -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- ── Google Fonts ── -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       ROOT VARIABLES & RESET
+    ============================================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cr-dark: #2a0808;
+      --cr-mid: #6b1414;
+      --cr-main: #8b1a1a;
+      --cr-bright: #c0392b;
+      --cr-light: #e05555;
+      --cream: #f8f3ee;
+      --cream2: #f0e8da;
+      --text-dark: #1a0a0a;
+      --text-mid: #4a2020;
+      --text-muted: #7a5050;
+      --white: #ffffff;
+      --fd: 'Playfair Display', Georgia, serif;
+      --fb: 'Jost', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--fb);
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    main {
+      padding-top: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    /* ============================================================
+       NAVBAR WRAPPER OVERRIDES
+       — No overflow:hidden, no width:100% (learned fix)
+    ============================================================ */
+    #cherry-nav-wrapper {
+      background: rgba(90, 15, 15, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      transition: border-radius 0.35s ease, box-shadow 0.4s ease, background 0.4s ease;
+    }
+
+    #cherry-nav-wrapper.scrolled-wrapper {
+      background: rgba(50, 8, 8, 0.98);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    #cherry-nav-wrapper.menu-open-wrapper {
+      border-radius: 22px;
+    }
+
+    #cherry-nav-wrapper .c-bar {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #8b1a1a, #e05555, #8b1a1a);
+      z-index: 99999;
+      transition: width 0.08s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+
+    /* ============================================================
+       SECTION 1 — PAGE HERO
+    ============================================================ */
+    .page-hero {
+      min-height: 52vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url('images/2.jpg') center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Red glow blob */
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 80, 80, 0.2), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ============================================================
+   VIDEO HERO BACKGROUND
+============================================================ */
+    .video-hero {
+      position: relative;
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 20px 80px;
+      overflow: hidden;
+      background: none;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      /* Same as your gradient */
+      z-index: 2;
+    }
+
+    /* Keep the red glow effect */
+    .video-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 80, 80, 0.2), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .video-hero .page-hero-content {
+      position: relative;
+      z-index: 4;
+    }
+
+    /* Breadcrumb */
+    .page-hero-bread {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 18px;
+    }
+
+    .page-hero-bread a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+    }
+
+    .page-hero-bread a:hover {
+      color: var(--cr-light);
+    }
+
+    .page-hero-bread-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Page title */
+    .page-hero-title {
+      font-family: var(--fd);
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .page-hero-sub {
+      font-size: clamp(12px, 1.8vw, 14px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+
+    /* ============================================================
+       SHARED STYLES
+    ============================================================ */
+    .sec-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cr-main);
+      margin-bottom: 12px;
+    }
+
+    .sec-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--cr-main);
+    }
+
+    .sec-title {
+      font-family: var(--fd);
+      font-size: clamp(26px, 4.5vw, 44px);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--cr-main);
+    }
+
+    .sec-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.80;
+    }
+
+    /* Buttons */
+    .btn-cherry {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: var(--cr-main);
+      color: #fff;
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 9999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(139, 26, 26, 0.4);
+    }
+
+    .btn-cherry:hover {
+      background: var(--cr-bright);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139, 26, 26, 0.55);
+    }
+
+    .btn-cherry:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+
+    /* ============================================================
+       SECTION 2 — STATS BAR
+       Inspired by React component's companyStats
+    ============================================================ */
+    .stats-bar {
+      padding: 60px 0;
+      background: var(--cr-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(139, 26, 26, 0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 50%, rgba(139, 26, 26, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      height: 100%;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(139, 26, 26, 0.35);
+      color: var(--cr-light);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      transition: transform 0.4s, background 0.3s;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform: rotate(360deg);
+      background: rgba(139, 26, 26, 0.55);
+    }
+
+    .stat-value {
+      font-family: var(--fd);
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .stat-line {
+      width: 28px;
+      height: 2px;
+      background: var(--cr-light);
+      margin: 12px auto 0;
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+
+    .stat-card:hover .stat-line {
+      width: 48px;
+    }
+
+
+    /* ============================================================
+       SECTION 3 — CONTACT MAIN
+       Two columns: form left | info right
+    ============================================================ */
+    .contact-section {
+      padding: 90px 0;
+      background: var(--cream);
+    }
+
+    /* ── Contact form card ── */
+    .contact-form-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid rgba(139, 26, 26, 0.07);
+      box-shadow: 0 20px 60px rgba(42, 8, 8, 0.08);
+      height: 100%;
+    }
+
+    /* Form heading */
+    .form-section-title {
+      font-family: var(--fd);
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    /* Input group */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control-cherry {
+      width: 100%;
+      padding: 13px 16px 13px 44px;
+      background: var(--cream);
+      border: 1px solid rgba(139, 26, 26, 0.12);
+      border-radius: 12px;
+      font-family: var(--fb);
+      font-size: 14px;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+      -webkit-appearance: none;
+    }
+
+    .form-control-cherry::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .form-control-cherry:focus {
+      border-color: var(--cr-main);
+      box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.08);
+      background: var(--white);
+    }
+
+    .form-control-cherry.is-error {
+      border-color: #e05555;
+    }
+
+    /* Textarea */
+    textarea.form-control-cherry {
+      padding-top: 13px;
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    /* Input icon wrapper */
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    textarea~.input-icon,
+    .input-wrap.is-textarea .input-icon {
+      top: 14px;
+      transform: none;
+    }
+
+    /* Error message */
+    .form-error {
+      font-size: 11px;
+      color: var(--cr-light);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-error.show {
+      display: block;
+    }
+
+    /* Submit spinner */
+    .btn-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    .btn-spinner.show {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.1);
+      border: 2px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      animation: popIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ── Contact info column ── */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Contact method card */
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 20px;
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid rgba(139, 26, 26, 0.07);
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .contact-method:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(42, 8, 8, 0.10);
+      border-color: rgba(139, 26, 26, 0.18);
+      color: var(--text-dark);
+    }
+
+    .contact-method-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(139, 26, 26, 0.07);
+      color: var(--cr-main);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .contact-method:hover .contact-method-icon {
+      background: var(--cr-main);
+      color: #fff;
+      transform: rotate(8deg) scale(1.1);
+    }
+
+    .contact-method-title {
+      font-family: var(--fd);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .contact-method-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-method-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cr-main);
+    }
+
+    .contact-method-arrow {
+      margin-left: auto;
+      color: rgba(139, 26, 26, 0.3);
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: transform 0.25s, color 0.25s;
+    }
+
+    .contact-method:hover .contact-method-arrow {
+      color: var(--cr-main);
+      transform: translateX(4px);
+    }
+
+    /* Quick response guarantee card */
+    .guarantee-card {
+      padding: 24px 22px;
+      background: linear-gradient(135deg, rgba(139, 26, 26, 0.06), rgba(139, 26, 26, 0.03));
+      border: 1px solid rgba(139, 26, 26, 0.14);
+      border-radius: 18px;
+      margin-top: 4px;
+    }
+
+    .guarantee-title {
+      font-family: var(--fd);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guarantee-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
+    }
+
+    .guarantee-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.70;
+    }
+
+
+    /* ============================================================
+       SECTION 4 — MAP + HOURS
+    ============================================================ */
+    .map-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    /* Google Maps embed container */
+    .map-embed {
+      width: 100%;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(139, 26, 26, 0.08);
+      box-shadow: 0 16px 48px rgba(42, 8, 8, 0.10);
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Hours card */
+    .hours-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 1px solid rgba(139, 26, 26, 0.07);
+      height: 100%;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(139, 26, 26, 0.07);
+    }
+
+    .hours-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .hours-day {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .hours-time {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      padding: 8px 16px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 9999px;
+    }
+
+    .open-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s infinite;
+    }
+
+    .open-badge-text {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #22c55e;
+    }
+
+
+    /* ============================================================
+       SECTION 5 — CTA BANNER
+    ============================================================ */
+    .cta-section {
+      padding: 80px 0;
+      background: var(--cr-main);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      font-family: var(--fd);
+      font-size: clamp(26px, 4.5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .cta-title em {
+      font-style: italic;
+      opacity: 0.6;
+    }
+
+    .cta-desc {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.75;
+      margin-bottom: 0;
+      max-width: 460px;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: #fff;
+      color: var(--cr-main);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-white:hover {
+      color: var(--cr-main);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-outline-wh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-outline-wh:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-d1 {
+      transition-delay: 0.10s;
+    }
+
+    .reveal-d2 {
+      transition-delay: 0.20s;
+    }
+
+    .reveal-d3 {
+      transition-delay: 0.30s;
+    }
+
+    .reveal-d4 {
+      transition-delay: 0.40s;
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — TABLET (768–991px)
+    ============================================================ */
+    @media (max-width: 991px) {
+      .contact-form-card {
+        padding: 30px 24px;
+      }
+
+      .map-embed {
+        height: 300px;
+      }
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (<768px)
+    ============================================================ */
+    @media (max-width: 767px) {
+      .page-hero {
+        padding: 110px 20px 60px;
+        min-height: 40vh;
+        overflow: hidden;
+      }
+
+      .page-hero-title {
+        font-size: clamp(26px, 9vw, 42px);
+        word-break: break-word;
+      }
+
+      .page-hero-sub {
+        font-size: 10px;
+        letter-spacing: 0.10em;
+      }
+
+      .stats-bar {
+        padding: 50px 0;
+      }
+
+      .contact-section {
+        padding: 60px 0;
+      }
+
+      .contact-form-card {
+        padding: 24px 18px;
+      }
+
+      .map-section {
+        padding: 60px 0;
+      }
+
+      .map-embed {
+        height: 240px;
+      }
+
+      .cta-section {
+        padding: 60px 0;
+      }
+
+      .cta-section .row {
+        text-align: center;
+      }
+
+      .cta-desc {
+        max-width: 100%;
+      }
+
+      .cta-section .d-flex {
+        justify-content: center !important;
+      }
+
+      #cherry-nav-wrapper {
+        top: 14px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        margin: 0 !important;
+        transform: none !important;
+      }
+
+      .video-hero {
+        padding: 110px 20px 60px;
+        min-height: 40vh;
+      }
+
+      .hero-video-bg {
+        object-fit: cover;
+      }
+
+
+
+
+    }
+
+
+    /* ============================================================
+       RESPONSIVE — SMALL MOBILE (<480px)
+    ============================================================ */
+    @media (max-width: 480px) {
+
+      .btn-cherry,
+      .btn-white,
+      .btn-outline-wh {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 20px;
+        font-size: 11px;
+      }
+
+      .contact-method {
+        flex-wrap: wrap;
+      }
+
+      .contact-method-arrow {
+        display: none;
+      }
+
+      .stat-value {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .map-embed iframe {
+        pointer-events: none;
+      }
+    }
+
+    html {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+  </style>
+</head>
+
+<!-- data-page="contact" highlights Contact link in navbar -->
+
+<body data-page="contact">
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ============================================================
+       NAVBAR — injected from includes/navbar.html
+  ============================================================ -->
+  <div id="navbar-placeholder">
+    <!-- includes/navbar.html -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet">
+
+    <style>
+      #cherry-nav-wrapper {
+        position: fixed !important;
+        top: calc(14px + var(--vv-top, 0px)) !important;
+        left: max(env(safe-area-inset-left, 0px), 12px) !important;
+        right: max(env(safe-area-inset-right, 0px), 12px) !important;
+        transform: none !important;
+        z-index: 99999 !important;
+        width: auto;
+        max-width: 1140px;
+        backface-visibility: hidden;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ── Pill ── */
+      .c-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 22px;
+        height: 64px;
+        background: rgba(107, 20, 20, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 9999px;
+        transition: background 0.4s, border-radius 0.35s, box-shadow 0.4s;
+        width: 100%;
+        max-width: 1140px;
+      }
+
+      .c-bar.scrolled {
+        background: rgba(50, 8, 8, 0.98);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .c-bar.nav-open {
+        border-radius: 20px;
+      }
+
+      /* ── Logo ── */
+      .c-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .c-logo img {
+        display: block;
+        height: 52px !important;
+        width: auto !important;
+        object-fit: contain !important;
+      }
+
+      .c-logo-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        display: block;
+        line-height: 1;
+      }
+
+      .c-logo-sub {
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 3px;
+      }
+
+      /* ── Desktop nav links ── */
+      .c-nav-links {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 28px;
+      }
+
+      .c-nav-links a {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        height: 22px;
+        line-height: 22px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color 0.25s;
+      }
+
+      .c-nav-links a::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: top 0.28s ease;
+      }
+
+      .c-nav-links a:hover {
+        color: transparent;
+      }
+
+      .c-nav-links a:hover::after {
+        top: 0;
+      }
+
+      .c-nav-links a.active {
+        color: #ffffff;
+        font-weight: 500;
+      }
+
+      /* ── Reserve button ── */
+      .c-btn-reserve {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 20px;
+        font-family: 'Jost', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 9999px;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: border-color 0.25s, background 0.25s;
+      }
+
+      .c-btn-reserve:hover {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* ── Hamburger ── */
+      .c-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .c-hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 2px;
+        transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+      }
+
+      .c-hamburger.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+        background: #ffffff;
+      }
+
+      .c-hamburger.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .c-hamburger.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+        background: #ffffff;
+      }
+
+      /* ── Mobile dropdown ── */
+      .c-mobile-menu {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        width: 100%;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+        /* CRITICAL: same dark background as pill so text is visible */
+        background: transparent;
+      }
+
+      .c-mobile-menu.is-open {
+        max-height: 520px;
+        opacity: 1;
+        padding: 14px 8px 16px;
+        overflow-y: auto;
+      }
+
+      .c-mobile-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.10);
+        margin-bottom: 16px;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+
+      .c-mobile-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .c-mobile-links li {
+        width: 100%;
+      }
+
+      /* ── KEY FIX: white text on dark pill background ── */
+      .c-mobile-links a {
+        display: block;
+        width: 100%;
+        padding: 11px 16px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.75) !important;
+        /* force white text */
+        border-radius: 10px;
+        transition: color 0.2s, background 0.2s;
+      }
+
+      .c-mobile-links a:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .c-mobile-links a.active {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.06);
+        font-weight: 600;
+      }
+
+      .c-mobile-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 12px;
+        padding: 13px 16px;
+        font-family: 'Jost', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-align: center;
+        color: #ffffff !important;
+        background: rgba(139, 26, 26, 0.50);
+        border: 1px solid rgba(255, 255, 255, 0.20);
+        border-radius: 9999px;
+        text-decoration: none;
+        white-space: normal;
+        line-height: 1.35;
+        transition: background 0.25s, border-color 0.25s;
+      }
+
+      .c-mobile-cta:hover {
+        background: rgba(139, 26, 26, 0.75);
+        border-color: rgba(255, 255, 255, 0.45);
+        color: #ffffff !important;
+      }
+
+      /* ── Breakpoints ── */
+      @media (min-width: 1200px) {
+        .c-hamburger {
+          display: none !important;
+        }
+
+        .c-mobile-menu {
+          display: none !important;
+        }
+
+        .c-nav-links {
+          gap: 32px;
+        }
+      }
+
+      @media (min-width: 992px) and (max-width: 1199px) {
+        .c-hamburger {
+          display: none !important;
+        }
+
+        .c-mobile-menu {
+          display: none !important;
+        }
+
+        .c-nav-links {
+          gap: 20px;
+        }
+
+        .c-nav-links a {
+          font-size: 12px;
+          letter-spacing: 0.12em;
+        }
+
+        .c-btn-reserve {
+          padding: 8px 14px;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+        }
+
+        .c-logo-name {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .c-nav-links {
+          display: none !important;
+        }
+
+        .c-btn-reserve {
+          display: none !important;
+        }
+
+        .c-hamburger {
+          display: flex !important;
+        }
+
+        .c-bar {
+          padding: 0 16px;
+          height: 58px;
+        }
+
+        .c-logo-sub {
+          display: none;
+        }
+
+        /* Reduce scroll jank on mobile browsers */
+        #cherry-nav-wrapper {
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+        }
+
+        .c-logo img {
+          height: 44px !important;
+          width: auto !important;
+        }
+
+      }
+
+      @media (max-width: 380px) {
+        .c-bar {
+          padding: 0 12px;
+          height: 54px;
+        }
+
+        .c-logo-name {
+          font-size: 15px;
+        }
+
+        .c-logo img {
+          height: 40px !important;
+          width: auto !important;
+        }
+
+      }
+
+      /* Prevent horizontal overflow on entire page */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Prevent stat cards from overflowing on mobile */
+      @media (max-width: 480px) {
+        .stats-bar .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .stat-card {
+          padding: 20px 12px;
+        }
+
+        .stat-value {
+          font-size: 18px;
+          word-break: break-word;
+        }
+
+        .stat-label {
+          font-size: 9px;
+          letter-spacing: 0.08em;
+        }
+      }
+    </style>
+
+    <!-- HTML -->
+    <div id="cherry-nav-wrapper">
+
+      <div class="c-bar" id="cBar">
+
+        <!-- Logo -->
+        <a href="index.html" class="c-logo">
+          <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo">
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="c-nav-links">
+          <li><a href="index.html" data-text="Home" data-page="home">Home</a></li>
+          <li><a href="about.html" data-text="About" data-page="about">About</a></li>
+          <li><a href="menu.html" data-text="Menu" data-page="menu">Menu</a></li>
+
+          <li><a href="contact.html" data-text="Contact" data-page="contact">Contact</a></li>
+        </ul>
+
+        <!-- Reserve button (desktop/tablet) -->
+        <a href="tel:+916294142257" class="c-btn-reserve">
+          Reserve a Table
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="c-hamburger" id="cHamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div><!-- /.c-bar -->
+
+      <!-- Mobile dropdown (INSIDE the pill wrapper so it inherits dark bg) -->
+      <div class="c-mobile-menu" id="cMobileMenu" aria-hidden="true">
+        <div class="c-mobile-divider"></div>
+
+        <ul class="c-mobile-links">
+          <li><a href="index.html" data-page="home">Home</a></li>
+          <li><a href="about.html" data-page="about">About</a></li>
+          <li><a href="menu.html" data-page="menu">Menu</a></li>
+          <li><a href="contact.html" data-page="contact">Contact</a></li>
+        </ul>
+
+        <div style="padding: 0 8px;">
+          <a href="tel:+916294142257" class="c-mobile-cta">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
+            </svg>
+            Reserve a Table &nbsp;+91 6294 142 257
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /#cherry-nav-wrapper -->
+
+  </div>
+
+
+  <main>
+
+    <!-- ============================================================
+     SECTION 1 — PAGE HERO WITH VIDEO BACKGROUND
+============================================================ -->
+    <section class="page-hero video-hero">
+      <!-- Hero Background Image -->
+      <img src="images/contact_hero.png" alt="The Prince Restaurant" class="hero-video-bg">
+
+      <!-- Dark Overlay (replaces the CSS gradient) -->
+      <div class="hero-overlay"></div>
+
+      <!-- Content -->
+      <div class="page-hero-content">
+
+        <!-- Breadcrumb -->
+        <div class="page-hero-bread">
+          <a href="index.html">Home</a>
+          <span class="page-hero-bread-sep">/</span>
+          <span>Contact Us</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="page-hero-title">
+          Get in <em>Touch</em>
+        </h1>
+
+        <!-- Sub -->
+        <p class="page-hero-sub">We'd love to hear from you · Open Every Day</p>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — STATS BAR
+         Inspired by React component's companyStats
+    ============================================================ -->
+    <section class="stats-bar">
+      <div class="container position-relative" style="z-index:1;">
+        <div class="row g-4">
+
+          <!-- Stat 1 — Response Time -->
+          <div class="col-6 col-lg-3 reveal reveal-d1">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-clock"></i></div>
+              <div class="stat-value">Same Day</div>
+              <div class="stat-label">Response Time</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 2 — Open Daily -->
+          <div class="col-6 col-lg-3 reveal reveal-d2">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+              <div class="stat-value">7 Days</div>
+              <div class="stat-label">Open Every Week</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 3 — Google Rating -->
+          <div class="col-6 col-lg-3 reveal reveal-d3">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-star-fill"></i></div>
+              <div class="stat-value">4.1 ★</div>
+              <div class="stat-label">Google Rating</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <!-- Stat 4 — ISO Certified -->
+          <div class="col-6 col-lg-3 reveal reveal-d4">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-shield-check"></i></div>
+              <div class="stat-value">ISO</div>
+              <div class="stat-label">9001 · 22000 Certified</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 3 — CONTACT MAIN
+         Left: Contact Form | Right: Contact Methods + Hours
+    ============================================================ -->
+    <section class="contact-section">
+      <div class="container">
+
+        <!-- Section heading -->
+        <div class="text-center mb-5 reveal">
+          <span class="sec-tag" style="justify-content:center;">Reach Out</span>
+          <h2 class="sec-title">Let's <em>Connect</em></h2>
+          <p class="sec-desc mx-auto text-center" style="max-width:480px;">
+            Have a question, want to make a reservation, or just want to say hello? We're always happy to hear from you.
+          </p>
+        </div>
+
+        <div class="row g-4 align-items-start">
+
+          <!-- LEFT: Contact Form -->
+          <div class="col-12 col-lg-7 reveal-left">
+            <div class="contact-form-card">
+
+              <!-- Form title -->
+              <h3 class="form-section-title mb-1">Send us a Message</h3>
+              <p class="sec-desc mb-4" style="font-size:13px;">
+                Tell us what's on your mind — we'll get back to you the same day.
+              </p>
+
+              <!-- Success state (hidden by default) -->
+              <div class="form-success" id="formSuccess">
+                <div class="form-success-icon">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+                <h4
+                  style="font-family:var(--fd);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:10px;">
+                  Message Sent!
+                </h4>
+                <p class="sec-desc mb-4" style="font-size:14px;">
+                  Thank you for reaching out. Our team will get back to you the same day.
+                </p>
+                <button class="btn-cherry" onclick="resetForm()" style="font-size:11px;padding:10px 24px;">
+                  Send Another Message
+                </button>
+              </div>
+
+              <!-- Contact form -->
+              <form id="contactForm" novalidate>
+
+                <div class="row g-3">
+
+                  <!-- Name -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="contactName">Your Name</label>
+                      <div class="input-wrap">
+                        <i class="bi bi-person input-icon"></i>
+                        <input type="text" id="contactName" class="form-control-cherry" placeholder="Full Name"
+                          autocomplete="name" />
+                      </div>
+                      <div class="form-error" id="errName">Name is required</div>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="contactEmail">Email Address</label>
+                      <div class="input-wrap">
+                        <i class="bi bi-envelope input-icon"></i>
+                        <input type="email" id="contactEmail" class="form-control-cherry" placeholder="you@example.com"
+                          autocomplete="email" />
+                      </div>
+                      <div class="form-error" id="errEmail">Please enter a valid email</div>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="contactPhone">Phone (Optional)</label>
+                      <div class="input-wrap">
+                        <i class="bi bi-telephone input-icon"></i>
+                        <input type="tel" id="contactPhone" class="form-control-cherry" placeholder="+91 XXXXX XXXXX"
+                          autocomplete="tel" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Subject -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="contactSubject">Subject</label>
+                      <div class="input-wrap">
+                        <i class="bi bi-chat-text input-icon"></i>
+                        <input type="text" id="contactSubject" class="form-control-cherry"
+                          placeholder="Reservation / Inquiry" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Message -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-label" for="contactMessage">Your Message</label>
+                      <div class="input-wrap is-textarea">
+                        <i class="bi bi-pencil-square input-icon"></i>
+                        <textarea id="contactMessage" class="form-control-cherry"
+                          placeholder="Tell us how we can help you..." rows="5"></textarea>
+                      </div>
+                      <div class="form-error" id="errMessage">Message must be at least 10 characters</div>
+                    </div>
+                  </div>
+
+                  <!-- Submit button -->
+                  <div class="col-12">
+                    <button type="submit" class="btn-cherry w-100" id="submitBtn" style="justify-content:center;">
+                      <span id="btnText"><i class="bi bi-send me-2"></i> Send Message</span>
+                      <span class="btn-spinner" id="btnSpinner"></span>
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+          <!-- RIGHT: Contact methods + Guarantee -->
+          <div class="col-12 col-lg-5 reveal-right">
+            <div class="contact-info-col">
+
+              <!-- Phone -->
+              <a href="tel:+916294142257" class="contact-method">
+                <div class="contact-method-icon">
+                  <i class="bi bi-telephone-fill"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Call Us</div>
+                  <div class="contact-method-desc">Speak directly with our team</div>
+                  <div class="contact-method-val">+91 6294 142 257</div>
+                </div>
+                <i class="bi bi-arrow-right contact-method-arrow"></i>
+              </a>
+
+              <!-- Email -->
+              <a href="mailto:sheikhfirozzz2121@gmail.com" class="contact-method">
+                <div class="contact-method-icon">
+                  <i class="bi bi-envelope-fill"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Email Us</div>
+                  <div class="contact-method-desc">Get in touch via email</div>
+                  <div class="contact-method-val">sheikhfirozzz2121@gmail.com</div>
+                </div>
+                <i class="bi bi-arrow-right contact-method-arrow"></i>
+              </a>
+
+              <!-- Address -->
+              <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer" class="contact-method">
+                <div class="contact-method-icon">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Visit Us</div>
+                  <div class="contact-method-desc">Our restaurant location</div>
+                  <div class="contact-method-val">Puratan Bazar, Kharagpur</div>
+                </div>
+                <i class="bi bi-arrow-right contact-method-arrow"></i>
+              </a>
+
+              <!-- WhatsApp -->
+              <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer" class="contact-method">
+                <div class="contact-method-icon">
+                  <i class="bi bi-whatsapp"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">WhatsApp</div>
+                  <div class="contact-method-desc">Quick chat on WhatsApp</div>
+                  <div class="contact-method-val">+91 6294 142 257</div>
+                </div>
+                <i class="bi bi-arrow-right contact-method-arrow"></i>
+              </a>
+
+              <!-- Quick Response Guarantee card -->
+              <div class="guarantee-card">
+                <div class="guarantee-title">
+                  <span class="guarantee-dot"></span>
+                  Quick Response Guarantee
+                </div>
+                <p class="guarantee-text">
+                  We pride ourselves on rapid response times. All inquiries are typically answered the same day.
+                  Walk in anytime between 11 AM – 11 PM, every day of the week — no appointment needed.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 4 — MAP + OPENING HOURS
+    ============================================================ -->
+    <section class="map-section">
+      <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-5 reveal">
+          <span class="sec-tag" style="justify-content:center;">Find Us</span>
+          <h2 class="sec-title">Our <em>Location</em></h2>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+
+          <!-- Google Map -->
+          <div class="col-12 col-lg-8 reveal-left">
+            <div class="map-embed">
+              <iframe src="https://www.google.com/maps?q=22.3077459,87.3043096&hl=en&z=16&output=embed" width="100%"
+                height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="The Prince Restaurant location map">
+              </iframe>
+            </div>
+
+            <!-- Mobile Button -->
+            <div class="d-block d-lg-none mt-3 text-center">
+              <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
+                class="btn-cherry d-inline-flex" style="justify-content:center;">
+                <i class="bi bi-map-fill me-2"></i>
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Opening Hours -->
+          <div class="col-12 col-lg-4 reveal-right">
+            <div class="hours-card">
+
+              <span class="sec-tag">Opening Hours</span>
+              <h3
+                style="font-family:var(--fd);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:20px;">
+                When to Visit
+              </h3>
+
+              <!-- Hours rows -->
+              <div class="hours-row">
+                <span class="hours-day">Monday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Tuesday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Wednesday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Thursday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Friday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Saturday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Sunday</span>
+                <span class="hours-time">11:00 AM – 11:00 PM</span>
+              </div>
+
+              <!-- Open now badge -->
+              <div class="open-badge">
+                <span class="open-badge-dot"></span>
+                <span class="open-badge-text" id="openStatus">Open Every Day</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 5 — CTA BANNER
+    ============================================================ -->
+    <section class="cta-section">
+      <div class="container position-relative" style="z-index:1;">
+        <div class="row align-items-center g-4">
+
+          <!-- Left: text -->
+          <div class="col-12 col-lg-7 reveal-left">
+            <h2 class="cta-title">
+              Ready to Create<br>
+              <em>Your Prince Memory?</em>
+            </h2>
+            <p class="cta-desc">
+              Walk in or call ahead. Open every day from 11 AM to 11 PM.
+              Kharagpur's premium dining destination is waiting for you.
+            </p>
+          </div>
+
+          <!-- Right: buttons -->
+          <div class="col-12 col-lg-5 reveal-right">
+            <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+              <a href="tel:+916294142257" class="btn-white">
+                <i class="bi bi-telephone-fill"></i> Call Now
+              </a>
+              <a href="menu.html" class="btn-outline-wh">
+                View Menu
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — injected from includes/footer.html
+  ============================================================ -->
+  <div id="footer-placeholder">
+    <!-- ============================================================
+     The Prince Restaurant — FOOTER
+     File location: includes/footer.html
+     Stack: Bootstrap 5 + Custom CSS + Vanilla JS
+     ============================================================ -->
+
+    <style>
+      /* ── Footer Variables ───────────────────────────────────────── */
+      #cherry-footer {
+        --cherry-dark: #3a0a0a;
+        --cherry-mid: #5c1010;
+        --cherry-red: #e05555;
+        --white-85: rgba(255, 255, 255, 0.85);
+        --white-60: rgba(255, 255, 255, 0.60);
+        --white-40: rgba(255, 255, 255, 0.40);
+        --white-20: rgba(255, 255, 255, 0.20);
+        --white-10: rgba(255, 255, 255, 0.10);
+        --white-06: rgba(255, 255, 255, 0.06);
+        --font-display: 'Playfair Display', Georgia, serif;
+        --font-body: 'Jost', sans-serif;
+
+        background: #3a0a0a;
+        font-family: var(--font-body);
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── Ambient glow ───────────────────────────────────────────── */
+      #cherry-footer::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 10% 60%, rgba(139, 26, 26, 0.20) 0%, transparent 50%),
+          radial-gradient(ellipse at 90% 40%, rgba(139, 26, 26, 0.14) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      /* ── Inner container ────────────────────────────────────────── */
+      #cherry-footer .ft-inner {
+        position: relative;
+        z-index: 1;
+        padding: 60px 0 30px;
+      }
+
+      /* ── Section heading ────────────────────────────────────────── */
+      #cherry-footer .ft-heading {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--white-85);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      /* ── Brand column ───────────────────────────────────────────── */
+      #cherry-footer .ft-brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        margin-bottom: 0;
+      }
+
+      #cherry-footer .ft-brand-name {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        display: block;
+        line-height: 1;
+      }
+
+      #cherry-footer .ft-brand-sub {
+        font-size: 8px;
+        font-weight: 300;
+        color: var(--white-40);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 4px;
+      }
+
+      #cherry-footer .ft-tagline {
+        color: var(--white-40);
+        font-size: 12.5px;
+        line-height: 1.80;
+        max-width: 250px;
+        margin-bottom: 18px;
+      }
+
+      /* ── ISO badges ─────────────────────────────────────────────── */
+      #cherry-footer .ft-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 22px;
+      }
+
+      #cherry-footer .ft-badge {
+        font-size: 8.5px;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: var(--white-40);
+        border: 1px solid var(--white-10);
+        border-radius: 4px;
+        padding: 3px 9px;
+      }
+
+      /* ── Social icons ───────────────────────────────────────────── */
+      #cherry-footer .ft-socials {
+        display: flex;
+        gap: 8px;
+      }
+
+      #cherry-footer .ft-social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--white-10);
+        color: var(--white-40);
+        text-decoration: none;
+        transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
+      }
+
+      #cherry-footer .ft-social:hover {
+        color: #fff;
+        border-color: var(--white-40);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-2px);
+      }
+
+      /* ── Nav links ──────────────────────────────────────────────── */
+      #cherry-footer .ft-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      #cherry-footer .ft-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--white-40);
+        transition: color 0.22s, gap 0.22s;
+      }
+
+      #cherry-footer .ft-links a::before {
+        content: '';
+        display: inline-block;
+        width: 14px;
+        height: 1px;
+        background: var(--white-20);
+        flex-shrink: 0;
+        transition: width 0.25s, background 0.25s;
+      }
+
+      #cherry-footer .ft-links a:hover {
+        color: #fff;
+        gap: 14px;
+      }
+
+      #cherry-footer .ft-links a:hover::before {
+        width: 22px;
+        background: var(--white-60);
+      }
+
+      /* ── Opening hours ──────────────────────────────────────────── */
+      #cherry-footer .ft-hours {
+        margin-top: 28px;
+      }
+
+      #cherry-footer .ft-hours-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--white-06);
+      }
+
+      #cherry-footer .ft-hours-day {
+        color: var(--white-40);
+        font-size: 12px;
+        letter-spacing: 0.10em;
+      }
+
+      #cherry-footer .ft-hours-time {
+        color: var(--white-60);
+        font-size: 12px;
+        letter-spacing: 0.10em;
+        font-weight: 500;
+      }
+
+      #cherry-footer .ft-open-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      #cherry-footer .ft-open-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        flex-shrink: 0;
+        animation: ftPulse 2.2s infinite ease-in-out;
+      }
+
+      @keyframes ftPulse {
+
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.35;
+          transform: scale(0.85);
+        }
+      }
+
+      #cherry-footer .ft-open-text {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(34, 197, 94, 0.75);
+      }
+
+      /* ── Contact info ───────────────────────────────────────────── */
+      #cherry-footer .ft-contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      #cherry-footer .ft-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      #cherry-footer .ft-contact-icon {
+        color: rgba(224, 85, 85, 0.75);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      #cherry-footer .ft-contact-text {
+        color: var(--white-40);
+        font-size: 12.5px;
+        line-height: 1.65;
+        transition: color 0.22s;
+        text-decoration: none;
+      }
+
+      #cherry-footer .ft-contact-item:hover .ft-contact-text {
+        color: var(--white-60);
+      }
+
+      /* ── Google Maps button ─────────────────────────────────────── */
+      #cherry-footer .ft-map-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 9px 20px;
+        font-family: var(--font-body);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--white-40);
+        border: 1px solid var(--white-10);
+        border-radius: 9999px;
+        text-decoration: none;
+        transition: color 0.25s, border-color 0.25s, background 0.25s;
+      }
+
+      #cherry-footer .ft-map-btn:hover {
+        color: #fff;
+        border-color: var(--white-40);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* ── Divider ────────────────────────────────────────────────── */
+      #cherry-footer .ft-divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 40px 0 22px;
+      }
+
+      #cherry-footer .ft-divider-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      /* ── Bottom bar ─────────────────────────────────────────────── */
+      #cherry-footer .ft-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #cherry-footer .ft-copy {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.20);
+      }
+
+      /* ── Responsive ─────────────────────────────────────────────── */
+      @media (max-width: 991px) {
+        #cherry-footer .ft-inner {
+          padding: 50px 0 28px;
+        }
+
+        #cherry-footer .ft-col {
+          margin-bottom: 36px;
+        }
+
+        #cherry-footer .ft-tagline {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        #cherry-footer .ft-inner {
+          padding: 40px 0 24px;
+        }
+
+        #cherry-footer .ft-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        #cherry-footer .ft-col {
+          margin-bottom: 32px;
+        }
+
+        #cherry-footer .ft-heading {
+          margin-bottom: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #cherry-footer .ft-hours-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+        }
+      }
+
+      .cherry-float-actions {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 9998;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .cherry-float-btn {
+        width: 54px;
+        height: 54px;
+        border: none;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+      }
+
+      .cherry-float-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 36px rgba(0, 0, 0, 0.22);
+      }
+
+      .cherry-float-btn:focus-visible {
+        outline: 3px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 3px;
+      }
+
+      .cherry-float-btn--whatsapp {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: #fff;
+      }
+
+      .cherry-float-btn--top {
+        background: linear-gradient(135deg, #8b1a1a, #e05555);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      @media (max-width: 767px) {
+        .cherry-float-actions {
+          right: 14px;
+          bottom: 14px;
+          gap: 10px;
+        }
+
+        .cherry-float-btn {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    </style>
+
+    <!-- ═══════════════════ FOOTER HTML ═══════════════════ -->
+    <footer id="cherry-footer">
+      <div class="ft-inner">
+        <div class="container">
+          <div class="row">
+
+            <!-- ── Col 1: Brand ───────────────────────────── -->
+            <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+              <a href="index.html" class="ft-brand-logo">
+                <img src="menu/logo-transparent.png" alt="The Prince Restaurant Logo" width="80" height="80"
+                  style="object-fit: contain;">
+              </a>
+              <p class="ft-tagline fs-6">
+                Not just a meal — a memory.<br>
+                Where every dish tells a story of heritage, warmth &amp; craft.
+              </p>
+
+              <!--
+           <div class="ft-badges">
+            <span class="ft-badge">ISO 9001:2015</span>
+            <span class="ft-badge">ISO 22000:2018</span>
+            <span class="ft-badge">Hygiene Certified</span>
+          </div>
+          -->
+
+
+
+                <!-- Google Maps -->
+                <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
+                  class="ft-social" aria-label="Google Maps">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                </a>
+              </div>
+
+            </div><!-- /col brand -->
+
+            <!-- ── Col 2: Links + Hours ────────────────────── -->
+            <div class="col-12 col-md-6 col-lg-4 ft-col mb-4 mb-lg-0">
+
+              <span class="ft-heading">Quick Links</span>
+              <ul class="ft-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+
+              <!-- <div class="ft-hours">
+            <span class="ft-heading">Opening Hours</span>
+            <div class="ft-hours-row">
+              <span class="ft-hours-day">Monday – Sunday</span>
+              <span class="ft-hours-time">11:00 AM – 11:00 PM</span>
+            </div>
+            <div class="ft-open-badge">
+              <span class="ft-open-dot"></span>
+              <span class="ft-open-text">Open Now · Every Day</span>
+            </div>
+          </div> -->
+
+            </div><!-- /col links -->
+
+            <!-- ── Col 3: Contact ──────────────────────────── -->
+            <div class="col-12 col-md-12 col-lg-4 ft-col">
+
+              <span class="ft-heading">Find Us</span>
+
+              <div class="ft-contact-list">
+
+                <!-- Address -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                  <span class="ft-contact-text fs-6">
+                    795/519 Prem Nagar, Sonamui,<br>
+                    IIT Prembazar Gate, Kharagpur, WB 721306
+                  </span>
+                </div>
+
+                <!-- Phone -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                         19.79 19.79 0 0 1-8.63-3.07
+                         A19.5 19.5 0 0 1 4.69 12
+                         a19.79 19.79 0 0 1-3.07-8.67
+                         A2 2 0 0 1 3.6 1.27h3
+                         a2 2 0 0 1 2 1.72
+                         c.127.96.361 1.903.7 2.81
+                         a2 2 0 0 1-.45 2.11L7.91 8.96
+                         a16 16 0 0 0 6 6l.96-.96
+                         a2 2 0 0 1 2.11-.45
+                         c.907.339 1.85.573 2.81.7
+                         A2 2 0 0 1 21.73 16.92z" />
+                  </svg>
+                  <a href="tel:+916294142257" class="ft-contact-text fs-6">
+                    +91 6294 142 257
+                  </a>
+                </div>
+
+                <!-- Email -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12
+                         c0 1.1-.9 2-2 2H4
+                         c-1.1 0-2-.9-2-2V6
+                         c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  <a href="mailto:sheikhfirozzz2121@gmail.com" class="ft-contact-text fs-6">
+                    sheikhfirozzz2121@gmail.com
+                  </a>
+                </div>
+
+                <!-- Website -->
+                <div class="ft-contact-item">
+                  <svg class="ft-contact-icon" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10
+                         15.3 15.3 0 0 1-4 10
+                         15.3 15.3 0 0 1-4-10
+                         15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                  <a href="https://theprincerestaurant.in" target="_blank" rel="noopener noreferrer"
+                    class="ft-contact-text fs-6">
+                    www.theprincerestaurant.in
+                  </a>
+                </div>
+
+              </div><!-- /contact list -->
+
+              <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
+                class="ft-map-btn">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2C8.13 2 5 5.13 5 10c0 5.25 7 12 7 12s7-6.75 7-12c0-4.87-3.13-7-7-7z" />
+                </svg>
+                Get Directions on Google Maps
+              </a>
+
+            </div><!-- /col contact -->
+
+          </div><!-- /.row -->
+
+          <!-- ── Divider ── -->
+          <div class="ft-divider">
+            <div class="ft-divider-line"></div>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="10" cy="10" r="9" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+              <circle cx="10" cy="10" r="2.8" fill="rgba(224,85,85,0.55)" />
+            </svg>
+            <div class="ft-divider-line"></div>
+          </div>
+
+          <!-- ── Bottom bar ── -->
+          <div class="ft-bottom d-flex flex-wrap align-items-center">
+
+            <!-- Left -->
+            <div class="ft-copy flex-fill text-start">
+              &copy; <span class="ft-year"></span>
+              The Prince Restaurant &amp; Restaurant &mdash; All rights reserved.
+              Made with <i class="bi bi-heart-fill text-danger"></i> by
+              <a href="https://nexvoraweb.in/" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                Nexvora
+              </a>
+            </div>
+
+            <!-- Center -->
+            <div class="ft-copy text-center">
+              Kharagpur, West Bengal, India
+            </div>
+
+            <!-- Right (empty for balance, optional) -->
+            <div class="flex-fill"></div>
+
+          </div>
+
+        </div><!-- /.container -->
+      </div><!-- /.ft-inner -->
+    </footer>
+
+    <div class="cherry-float-actions" aria-label="Quick actions">
+      <a href="https://wa.me/916294142257" target="_blank" rel="noopener noreferrer"
+        class="cherry-float-btn cherry-float-btn--whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M16.6 14.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.5.1-.2-.1-1-.4-1.8-1.1-.7-.6-1.2-1.3-1.3-1.5-.1-.2 0-.4.1-.5l.3-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.4 3.8 3.4.5.2 1 .4 1.3.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1 0-.1-.2-.2-.4-.3Z" />
+          <path
+            d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z" />
+        </svg>
+      </a>
+
+      <button type="button" id="cherry-scroll-top" class="cherry-float-btn cherry-float-btn--top"
+        aria-label="Scroll to top" title="Scroll to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="m5 12 7-7 7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ═══════════════════ FOOTER JS ═══════════════════ -->
+    <script>
+      /* Auto year */
+      document.querySelectorAll('.ft-year').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    </script>
+
+  </div>
+
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    /* ============================================================
+       Always start at top on load / back-navigation
+    ============================================================ */
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) window.scrollTo(0, 0);
+    });
+    window.scrollTo(0, 0);
+
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', function () {
+        var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    })();
+
+
+    /* ============================================================
+       SCROLL REVEAL — IntersectionObserver
+    ============================================================ */
+    (function () {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ============================================================
+       OPEN STATUS — show "Open Now" or "Closed"
+    ============================================================ */
+    (function () {
+      var el = document.getElementById('openStatus');
+      if (!el) return;
+
+      var now = new Date();
+      var hour = now.getHours();
+      var isOpen = (hour >= 11 && hour < 23);
+
+      el.textContent = isOpen ? 'Open Now · Until 11 PM' : 'Opens at 11:00 AM';
+    })();
+
+
+    /* ============================================================
+       CONTACT FORM — validation + submit
+    ============================================================ */
+    (function () {
+
+      var form = document.getElementById('contactForm');
+      var formSuccess = document.getElementById('formSuccess');
+      var submitBtn = document.getElementById('submitBtn');
+      var btnText = document.getElementById('btnText');
+      var btnSpinner = document.getElementById('btnSpinner');
+
+      /* Show error for a field */
+      function showError(id, msg) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.add('show');
+      }
+
+      /* Hide error for a field */
+      function hideError(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.remove('show');
+      }
+
+      /* Mark input as error */
+      function markError(inputId) {
+        var el = document.getElementById(inputId);
+        if (el) el.classList.add('is-error');
+      }
+
+      /* Clear error on input */
+      function clearError(inputId, errId) {
+        var inp = document.getElementById(inputId);
+        if (inp) {
+          inp.addEventListener('input', function () {
+            inp.classList.remove('is-error');
+            hideError(errId);
+          }, { once: false });
+        }
+      }
+
+      /* Setup live clear on all fields */
+      clearError('contactName', 'errName');
+      clearError('contactEmail', 'errEmail');
+      clearError('contactMessage', 'errMessage');
+
+      function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, function (tag) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag;
+        });
+      }
+
+      /* Validate and submit */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var name = escapeHTML(document.getElementById('contactName').value.trim());
+        var email = escapeHTML(document.getElementById('contactEmail').value.trim());
+        var message = escapeHTML(document.getElementById('contactMessage').value.trim());
+        var valid = true;
+
+        /* Validate name */
+        if (!name) {
+          showError('errName', 'Name is required');
+          markError('contactName');
+          valid = false;
+        } else {
+          hideError('errName');
+        }
+
+        /* Validate email */
+        var emailRegex = /\S+@\S+\.\S+/;
+        if (!email) {
+          showError('errEmail', 'Email is required');
+          markError('contactEmail');
+          valid = false;
+        } else if (!emailRegex.test(email)) {
+          showError('errEmail', 'Please enter a valid email address');
+          markError('contactEmail');
+          valid = false;
+        } else {
+          hideError('errEmail');
+        }
+
+        /* Validate message */
+        if (!message) {
+          showError('errMessage', 'Message is required');
+          markError('contactMessage');
+          valid = false;
+        } else if (message.length < 10) {
+          showError('errMessage', 'Message must be at least 10 characters');
+          markError('contactMessage');
+          valid = false;
+        } else {
+          hideError('errMessage');
+        }
+
+        if (!valid) return;
+
+        /* Show loading state */
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnSpinner.classList.add('show');
+
+        /* Simulate API call — 2 second delay */
+        setTimeout(function () {
+          btnSpinner.classList.remove('show');
+          btnText.style.display = '';
+          submitBtn.disabled = false;
+
+          /* Show success */
+          form.style.display = 'none';
+          formSuccess.classList.add('show');
+
+        }, 2000);
+
+      });
+
+    })();
+
+
+    /* ============================================================
+       RESET FORM — back to empty form from success state
+    ============================================================ */
+    function resetForm() {
+      var form = document.getElementById('contactForm');
+      var formSuccess = document.getElementById('formSuccess');
+
+      /* Clear all inputs */
+      form.querySelectorAll('input, textarea').forEach(function (el) {
+        el.value = '';
+        el.classList.remove('is-error');
+      });
+
+      /* Hide errors */
+      form.querySelectorAll('.form-error').forEach(function (el) {
+        el.classList.remove('show');
+      });
+
+      /* Show form again */
+      form.style.display = '';
+      formSuccess.classList.remove('show');
+    }
+
+
+
+
+
+
+    /* ============================================================
+       NAVBAR INITIALIZATION
+       All navbar JS runs directly since elements are inlined in DOM
+       ============================================================ */
+    (function () {
+      var wrapper = document.getElementById('cherry-nav-wrapper');
+      var hamburger = document.getElementById('cHamburger');
+      var mobileMenu = document.getElementById('cMobileMenu');
+      var isOpen = false;
+
+      if (!wrapper || !hamburger || !mobileMenu) {
+        console.error('Navbar elements not found');
+        return;
+      }
+
+      /* Keep navbar fixed during mobile address-bar show/hide */
+      (function syncNavbarToVisualViewport() {
+        if (!window.visualViewport) return;
+
+        var vv = window.visualViewport;
+
+        function update() {
+          var t = vv.offsetTop || 0;
+          wrapper.style.setProperty('--vv-top', t + 'px');
+        }
+
+        vv.addEventListener('scroll', update, { passive: true });
+        vv.addEventListener('resize', update, { passive: true });
+        update();
+      })();
+
+      /* Scroll → darken wrapper */
+      wrapper.classList.remove('scrolled-wrapper');
+
+      /* Open mobile menu */
+      function openMenu() {
+        isOpen = true;
+        hamburger.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        wrapper.classList.add('menu-open-wrapper');
+      }
+
+      /* Close mobile menu */
+      function closeMenu() {
+        isOpen = false;
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        /* Delay radius reset until animation completes */
+        setTimeout(function () {
+          if (!isOpen) wrapper.classList.remove('menu-open-wrapper');
+        }, 380);
+      }
+
+      /* Hamburger click */
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      /* Click outside navbar → close */
+      document.addEventListener('click', function (e) {
+        if (isOpen && !wrapper.contains(e.target)) closeMenu();
+      });
+
+      /* Tap a mobile link → close */
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      /* Escape key → close */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) closeMenu();
+      });
+
+      /* Highlight active nav link using body data-page attribute */
+      var page = document.body.getAttribute('data-page') || '';
+      if (page) {
+        document.querySelectorAll('[data-page="' + page + '"]')
+          .forEach(function (el) { el.classList.add('active'); });
+      }
+    })();
+
+
+  </script>
+
+  <!-- DevTools / Source Code Protection -->
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      const keyCode = e.keyCode || e.which;
+      const key = (e.key || '').toLowerCase();
+      const isInspectKey = keyCode === 73 || key === 'i' || 
+                           keyCode === 74 || key === 'j' || 
+                           keyCode === 67 || key === 'c' || 
+                           keyCode === 85 || key === 'u';
+      const isF12 = keyCode === 123 || key === 'f12';
+
+      if (
+        isF12 ||
+        (e.ctrlKey && e.shiftKey && isInspectKey) || // Ctrl+Shift+I/J/C
+        (e.ctrlKey && (keyCode === 85 || key === 'u')) || // Ctrl+U (View Source)
+        (e.metaKey && e.altKey && isInspectKey) || // Cmd+Alt+I/J/C/U (Mac)
+        (e.metaKey && e.shiftKey && (keyCode === 67 || key === 'c')) // Cmd+Shift+C (Mac Element inspect)
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    });
+
+    // DevTools detection with instant redirect to about:blank to hide all code
+    (function () {
+      function protect() {
+        try {
+          window.location.replace("about:blank");
+        } catch(e) {}
+      }
+
+      // 1. Size-based detection (for docked DevTools)
+      function checkSize() {
+        const threshold = 160;
+        const widthDev = window.outerWidth - window.innerWidth > threshold;
+        const heightDev = window.outerHeight - window.innerHeight > threshold;
+        if (widthDev || heightDev) {
+          protect();
+        }
+      }
+
+      // 2. Console-based detection (for undocked DevTools)
+      const element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function () {
+          protect();
+        }
+      });
+
+      setInterval(function () {
+        checkSize();
+        console.log(element);
+        console.clear();
+      }, 250);
+    })();
+  </script>
+
+</body>
+
+</html>
