@@ -723,15 +723,15 @@
 
 
     /* ============================================================
-       SECTION 6 — REVIEWS
+       SECTION 6 — CELEBRATIONS & EVENTS
     ============================================================ */
-    .reviews-section {
-      background: var(--cream);
+    .events-section {
+      background: var(--cream2);
       padding: 80px 0;
+      position: relative;
     }
 
-    /* Tag pill */
-    .rev-tag {
+    .events-tag {
       display: inline-block;
       font-size: 11px;
       letter-spacing: 0.22em;
@@ -743,7 +743,7 @@
       margin-bottom: 12px;
     }
 
-    .rev-title {
+    .events-title {
       font-family: var(--fd);
       font-size: clamp(26px, 4vw, 40px);
       font-weight: 700;
@@ -751,190 +751,119 @@
       margin-bottom: 8px;
     }
 
-    .rev-sub {
+    .events-sub {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 30px;
+      margin-bottom: 45px;
     }
 
-    /* Google rating bar */
-    .g-bar {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
+    .event-card {
       background: var(--white);
-      border: 1px solid rgba(139, 26, 26, 0.1);
-      border-radius: 16px;
-      padding: 16px 24px;
-      box-shadow: 0 4px 18px rgba(42, 8, 8, 0.07);
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 100%;
-    }
-
-    .g-bar-score {
-      font-family: var(--fd);
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--cr-main);
-      line-height: 1;
-    }
-
-    .g-bar-stars {
-      color: var(--cr-light);
-      font-size: 16px;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
-
-    .g-bar-count {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      margin-top: 3px;
-    }
-
-    .g-bar-divider {
-      width: 1px;
-      height: 48px;
-      background: rgba(139, 26, 26, 0.1);
-    }
-
-    .g-write-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 18px;
-      background: var(--cr-main);
-      color: #fff;
-      font-size: 11px;
-      font-family: var(--fb);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      border-radius: 9999px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.25s, transform 0.2s;
-    }
-
-    .g-write-btn:hover {
-      background: var(--cr-bright);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* Review card */
-    .rev-card {
-      background: var(--white);
-      border-radius: 18px;
-      padding: 24px 22px;
-      border: 1px solid rgba(139, 26, 26, 0.07);
+      border-radius: 20px;
+      padding: 35px 30px;
+      border: 1px solid rgba(139, 26, 26, 0.06);
       height: 100%;
       position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(42, 8, 8, 0.03);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                  box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .rev-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 40px rgba(42, 8, 8, 0.10);
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(42, 8, 8, 0.08);
+      border-color: rgba(139, 26, 26, 0.15);
     }
 
-    .rev-card.rev-featured {
-      border-color: rgba(139, 26, 26, 0.22);
-    }
-
-    /* Top Review badge */
-    .rev-featured-badge {
+    .event-card::before {
+      content: '';
       position: absolute;
-      top: 14px;
-      right: 14px;
-      background: var(--cr-main);
-      color: #fff;
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cr-main), var(--cr-light));
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
-    .rev-card-top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    .event-card:hover::before {
+      opacity: 1;
     }
 
-    .rev-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--cr-main);
-      color: #fff;
-      font-family: var(--fd);
-      font-size: 18px;
-      font-weight: 700;
+    .event-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(139, 26, 26, 0.06);
+      color: var(--cr-main);
+      font-size: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 24px;
+      transition: background 0.3s, color 0.3s;
       flex-shrink: 0;
     }
 
-    .rev-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-dark);
-      line-height: 1.2;
+    .event-card:hover .event-icon {
+      background: var(--cr-main);
+      color: #fff;
     }
 
-    .rev-date {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .rev-g-icon {
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    .rev-stars {
-      color: var(--cr-light);
-      font-size: 13px;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .rev-text {
+    .event-card-title {
       font-family: var(--fd);
-      font-style: italic;
-      font-size: 13.5px;
+      font-size: 20px;
+      font-weight: 700;
       color: var(--text-dark);
-      line-height: 1.75;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .rev-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
+    .event-card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .event-link {
+      font-size: 12px;
+      font-family: var(--fb);
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--cr-main);
-      background: rgba(139, 26, 26, 0.07);
-      border-radius: 9999px;
-      padding: 3px 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      transition: color 0.2s, gap 0.2s;
     }
 
-    /* View all button */
-    .rev-view-all {
+    .event-link i {
+      font-size: 14px;
+      transition: transform 0.2s;
+    }
+
+    .event-card:hover .event-link {
+      color: var(--cr-bright);
+      gap: 10px;
+    }
+
+    .event-card:hover .event-link i {
+      transform: translateX(3px);
+    }
+
+    .events-cta {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
+      padding: 12px 32px;
       background: transparent;
       color: var(--cr-main);
       font-size: 11px;
@@ -948,7 +877,7 @@
       transition: all 0.25s;
     }
 
-    .rev-view-all:hover {
+    .events-cta:hover {
       background: var(--cr-main);
       color: #fff;
       border-color: var(--cr-main);
@@ -1225,25 +1154,16 @@
         margin-top: 14px;
       }
 
-      .reviews-section {
+      .events-section {
         padding: 50px 0;
       }
 
-      .rev-card {
-        padding: 20px 18px;
+      .event-card {
+        padding: 25px 22px;
       }
 
-      .rev-text {
-        font-size: 13px;
-      }
-
-      .g-bar {
-        padding: 14px 16px;
-        gap: 10px;
-      }
-
-      .g-bar-score {
-        font-size: 32px;
+      .event-card-title {
+        font-size: 18px;
       }
 
       .cta-section {
@@ -2884,240 +2804,83 @@
 
 
     <!-- ============================================================
-         SECTION 6 — GOOGLE REVIEWS
+         SECTION 6 — CELEBRATIONS & EVENTS
     ============================================================ -->
-    <section class="reviews-section">
+    <section class="events-section">
       <div class="container">
 
         <!-- Heading -->
         <div class="text-center mb-5">
-          <span class="rev-tag"><i class="bi bi-google me-1"></i> Google Reviews</span>
-          <h2 class="rev-title">Our Happy Customers</h2>
-          <p class="rev-sub">Real experiences from real guests — straight from Google</p>
-
-          <!-- Google rating bar -->
-          <div class="d-flex justify-content-center">
-            <div class="g-bar">
-
-              <!-- Google logo + score -->
-              <div class="d-flex align-items-center gap-3">
-                <svg viewBox="0 0 24 24" width="34" height="34" style="flex-shrink:0;" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-                <div>
-                  <div class="g-bar-score">4.1</div>
-                  <div class="g-bar-stars">★★★★☆</div>
-                  <div class="g-bar-count">Based on 824 reviews</div>
-                </div>
-              </div>
-
-              <div class="g-bar-divider"></div>
-
-              <!-- Write review CTA -->
-              <div>
-                <div style="font-size:12px;color:var(--text-dark);font-weight:500;margin-bottom:8px;">Share your
-                  experience</div>
-                <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
-                  class="g-write-btn">
-                  <i class="bi bi-pencil-square"></i> Write a Review
-                </a>
-              </div>
-
-            </div><!-- /.g-bar -->
-          </div>
-
-          <div class="d-flex justify-content-center mt-4">
-            <a href="https://maps.app.goo.gl/4Nf5SAfhEfKFP2TB7" target="_blank" rel="noopener noreferrer"
-              class="rev-view-all">
-              <i class="bi bi-google me-2"></i> View All Google Reviews
-            </a>
-          </div>
-
+          <span class="events-tag"><i class="bi bi-calendar-event me-1"></i> Special Events</span>
+          <h2 class="events-title">Host Your <em>Special Moments</em></h2>
+          <p class="events-sub mx-auto text-center" style="max-width:540px;">
+            Whether it's an intimate birthday dinner, a lively kitty party, or a grand student milestone celebration, we make it unforgettable.
+          </p>
         </div>
 
-        <!-- Review cards grid -->
-        <div class="row g-4">
+        <!-- Event cards grid -->
+        <div class="row g-4 justify-content-center">
 
-          <!-- Review 1 — Amit Mishra (Featured) -->
+          <!-- Card 1 — Family Gatherings & Birthdays -->
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card rev-featured">
-              <span class="rev-featured-badge"><i class="bi bi-patch-check-fill"></i> Top Review</span>
-              <div class="rev-card-top">
-                <div class="rev-avatar">A</div>
-                <div>
-                  <div class="rev-name">Amit Mishra</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>21 Mar 2023</div>
+            <div class="event-card">
+              <div>
+                <div class="event-icon">
+                  <i class="bi bi-gift-fill"></i>
                 </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
+                <h3 class="event-card-title">Birthdays & Anniversaries</h3>
+                <p class="event-card-desc">
+                  Make your milestones unforgettable with personalized table decorations, custom buffet options, dedicated space, and warm hospitality for your friends and family.
+                </p>
               </div>
-              <div class="rev-stars">★★★★★</div>
-              <p class="rev-text">"Best restaurant in Prembazar area. The Tandoori Chicken and Chicken Biryani are
-                top-notch. Clean space and very elegant family dining atmosphere. Highly recommended! 👑"</p>
-              <span class="rev-chip"><i class="bi bi-trophy-fill"></i> Must Visit</span>
+              <a href="contact.html" class="event-link">
+                Plan Celebration <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
 
-          <!-- Review 2 — Riya Sen -->
+          <!-- Card 2 — Kitty Parties & Social Gatherings -->
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card">
-              <div class="rev-card-top">
-                <div class="rev-avatar">R</div>
-                <div>
-                  <div class="rev-name">Riya Sen</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>09 Oct 2023</div>
+            <div class="event-card">
+              <div>
+                <div class="event-icon">
+                  <i class="bi bi-people-fill"></i>
                 </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
+                <h3 class="event-card-title">Kitty Parties & Get-Togethers</h3>
+                <p class="event-card-desc">
+                  Spacious dining setups designed for lively conversations and bonding. Choose from our wide selection of mocktails, starters, and tailor-made menus.
+                </p>
               </div>
-              <div class="rev-stars">★★★★★</div>
-              <p class="rev-text">"Wonderful dining experience near IIT Prembazar Gate. We celebrated my brother's
-                birthday here, and the service was extremely prompt and friendly. Love their paneer starters and garlic
-                naan! 🌟"</p>
-              <span class="rev-chip"><i class="bi bi-stars"></i> Special Occasions</span>
+              <a href="contact.html" class="event-link">
+                Book Gathering <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
 
-          <!-- Review 3 — Subrata Dey -->
+          <!-- Card 3 — Student Milestone Feasts -->
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card">
-              <div class="rev-card-top">
-                <div class="rev-avatar">S</div>
-                <div>
-                  <div class="rev-name">Subrata Dey</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>14 May 2023</div>
+            <div class="event-card">
+              <div>
+                <div class="event-icon">
+                  <i class="bi bi-mortarboard-fill"></i>
                 </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
+                <h3 class="event-card-title">Student Milestones & Group Feasts</h3>
+                <p class="event-card-desc">
+                  Specially discounted group packages for college students and IITians to celebrate project completions, placement wins, festivals, or farewells with delicious food.
+                </p>
               </div>
-              <div class="rev-stars">★★★★☆</div>
-              <p class="rev-text">"Very hygiene-conscious restaurant with pleasant interiors. The staff behaves
-                exceptionally well. The food quality is consistent, and it is a comfortable place to eat with family.
-                👍"</p>
-              <span class="rev-chip"><i class="bi bi-people-fill"></i> Clean & Safe</span>
+              <a href="contact.html" class="event-link">
+                Reserve for Group <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
 
-          <!-- Review 4 — Pritam Das -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card">
-              <div class="rev-card-top">
-                <div class="rev-avatar">P</div>
-                <div>
-                  <div class="rev-name">Pritam Das</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>02 Jun 2023</div>
-                </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-              </div>
-              <div class="rev-stars">★★★★★</div>
-              <p class="rev-text">"Excellent North Indian cuisine! Tried the Butter Chicken and Garlic Naan with Jeera
-                Rice. The food is delicious and the quantity is satisfying. A solid 5-star experience! 😊"</p>
-              <span class="rev-chip"><i class="bi bi-currency-rupee"></i> Great Value</span>
-            </div>
-          </div>
+        </div><!-- /.row events -->
 
-          <!-- Review 5 — Sneha Roy -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card">
-              <div class="rev-card-top">
-                <div class="rev-avatar">S</div>
-                <div>
-                  <div class="rev-name">Sneha Roy</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>09 Oct 2023</div>
-                </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-              </div>
-              <div class="rev-stars">★★★★★</div>
-              <p class="rev-text">"Great family restaurant. The ambiance is elegant and welcoming. Tandoori items are
-                super fresh and soft. Definitely the best food around the IIT campus! 💯"</p>
-              <span class="rev-chip"><i class="bi bi-house-heart-fill"></i> Great Ambience</span>
-            </div>
-          </div>
-
-          <!-- Review 6 — KV Suresh -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="rev-card">
-              <div class="rev-card-top">
-                <div class="rev-avatar">K</div>
-                <div>
-                  <div class="rev-name">KV Suresh</div>
-                  <div class="rev-date"><i class="bi bi-calendar3 me-1"></i>09 Oct 2023</div>
-                </div>
-                <svg class="rev-g-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-                  <path fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-              </div>
-              <div class="rev-stars">★★★★★</div>
-              <p class="rev-text">"Great hospitality and nice seating arrangement. Prompt service by the waiters.
-                Pineapple chutney and Bengali thali were highlights. Value for money! ✅"</p>
-              <span class="rev-chip"><i class="bi bi-shield-check-fill"></i> Good Service</span>
-            </div>
-          </div>
-
-        </div><!-- /.row reviews -->
-
-        <!-- View all link -->
+        <!-- Bottom CTA -->
         <div class="text-center mt-5">
-          <a href="https://maps.google.com/?cid=5723593593922046252" target="_blank" rel="noopener noreferrer"
-            class="rev-view-all">
-            <i class="bi bi-google"></i>
-            View All Reviews on Google
+          <a href="contact.html" class="events-cta">
+            Plan Your Event
             <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -4145,12 +3908,12 @@
     /* ============================================================
        3D CARD TILT — mouse move tilt on cards
        Creates a subtle 3D perspective tilt as mouse moves
-       over why-cards and review cards
+       over why-cards and event cards
     ============================================================ */
     (function () {
 
       /* Apply tilt to these card types */
-      var tiltSelectors = ['.why-card', '.rev-card'];
+      var tiltSelectors = ['.why-card', '.event-card'];
 
       tiltSelectors.forEach(function (selector) {
         var cards = document.querySelectorAll(selector);
@@ -4215,12 +3978,12 @@
     document.addEventListener('DOMContentLoaded', function () {
 
       /* Section headings — reveal from bottom */
-      document.querySelectorAll('.sec-title, .rev-title, .menu-strip-heading').forEach(function (el) {
+      document.querySelectorAll('.sec-title, .events-title, .menu-strip-heading').forEach(function (el) {
         el.classList.add('reveal');
       });
 
       /* Section tags */
-      document.querySelectorAll('.sec-tag, .rev-tag').forEach(function (el) {
+      document.querySelectorAll('.sec-tag, .events-tag').forEach(function (el) {
         el.classList.add('reveal');
       });
 
@@ -4230,14 +3993,10 @@
         el.classList.add('reveal-d' + Math.min(i + 1, 6));
       });
 
-      /* Review cards — alternating left/right */
-      document.querySelectorAll('.rev-card').forEach(function (el, i) {
-        if (i % 2 === 0) {
-          el.classList.add('reveal-left');
-        } else {
-          el.classList.add('reveal-right');
-        }
-        el.classList.add('reveal-d' + Math.min((i % 3) + 1, 3));
+      /* Event cards — staggered reveal */
+      document.querySelectorAll('.event-card').forEach(function (el, i) {
+        el.classList.add('reveal-scale');
+        el.classList.add('reveal-d' + Math.min(i + 1, 3));
       });
 
       /* About image — slide from left */
@@ -4247,10 +4006,6 @@
       /* About text side — slide from right */
       var aboutText = document.querySelector('.about-section .col-12.col-lg-7');
       if (aboutText) aboutText.classList.add('reveal-right');
-
-      /* Google rating bar */
-      var gBar = document.querySelector('.g-bar');
-      if (gBar) gBar.classList.add('reveal');
 
       /* CTA section content */
       var ctaDesc = document.querySelector('.cta-desc');
