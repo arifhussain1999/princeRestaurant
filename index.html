@@ -4733,10 +4733,14 @@
       .js-popup-overlay {
         position: relative;
         inset: auto;
-        background: linear-gradient(165deg, #1a0505 0%, #2a0808 30%, #3d0b0b 100%);
+        padding-top: 85px !important; /* Push down to clear the fixed navbar, while background goes under it */
+        background: #1a0505 !important;
+        background: linear-gradient(165deg, #1a0505 0%, #2a0808 30%, #3d0b0b 100%) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
         z-index: 9999;
         display: none; /* Hidden by default, shown when active */
         opacity: 0;
@@ -4760,7 +4764,8 @@
         border-bottom: 2px solid rgba(212, 175, 55, 0.3);
         box-shadow: none;
         transform: none !important;
-        background: transparent; /* Since parent has background */
+        background: transparent !important; /* Let parent background show */
+        color: #fff !important;
       }
 
       .js-popup-close {
@@ -4769,6 +4774,10 @@
         right: 12px;
         float: none;
         margin-right: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.6) !important;
+        border: 1px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
       }
 
       .js-popup-header {
@@ -4781,22 +4790,31 @@
 
       .js-bengali-text {
         font-size: 11px;
+        color: rgba(212, 175, 55, 0.8) !important;
         margin-bottom: 2px;
       }
 
       .js-festival-title {
         font-size: 24px;
+        background: linear-gradient(135deg, #d4af37, #f5d77a, #d4af37) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
         margin-bottom: 2px;
       }
 
       .js-festival-subtitle {
         font-size: 11px;
+        color: rgba(255, 255, 255, 0.6) !important;
         margin-bottom: 6px;
         letter-spacing: 0.15em;
       }
 
       .js-festival-date {
         font-size: 10px;
+        background: rgba(212, 175, 55, 0.12) !important;
+        color: #d4af37 !important;
+        border: 1px solid rgba(212, 175, 55, 0.4) !important;
         padding: 4px 12px;
         margin-bottom: 4px;
       }
@@ -4816,16 +4834,19 @@
 
       .js-cd-num {
         font-size: 18px;
+        color: #fff !important;
       }
 
       .js-cd-label {
         font-size: 8px;
+        color: rgba(255, 255, 255, 0.5) !important;
         letter-spacing: 0.1em;
         margin-top: 2px;
       }
 
       .js-cd-sep {
         font-size: 16px;
+        color: rgba(212, 175, 55, 0.7) !important;
         margin-top: 0;
       }
 
@@ -4848,45 +4869,72 @@
       }
 
       .js-thali-card {
-        padding: 16px 14px;
         border-radius: 12px;
       }
 
+      .js-thali-card.standard {
+        background: linear-gradient(160deg, rgba(139, 26, 26, 0.85), rgba(60, 12, 12, 0.95)) !important;
+        border: 1px solid rgba(212, 175, 55, 0.25) !important;
+        padding: 20px 16px 24px !important;
+      }
+
+      .js-thali-card.premium {
+        background: linear-gradient(160deg, rgba(40, 20, 5, 0.95), rgba(20, 10, 2, 0.98)) !important;
+        border: 1px solid rgba(212, 175, 55, 0.45) !important;
+        padding: 20px 16px 24px !important;
+      }
+
       .js-thali-name {
-        font-size: 16px;
+        font-size: 18px;
+        color: #fff !important;
         margin-bottom: 2px;
       }
 
       .js-thali-price-row {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .js-thali-price {
-        font-size: 22px;
+        font-size: 24px;
+      }
+
+      .js-thali-card.standard .js-thali-price {
+        color: #ff6b6b !important;
+      }
+
+      .js-thali-card.premium .js-thali-price {
+        color: #d4af37 !important;
+      }
+
+      .js-thali-per {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5) !important;
       }
 
       .js-menu-cat {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
       }
 
       .js-menu-cat-title {
         font-size: 10px;
+        color: rgba(255, 255, 255, 0.6) !important;
         margin-bottom: 4px;
         padding-bottom: 2px;
       }
 
       .js-menu-cat li {
-        font-size: 12px;
-        padding: 1px 0;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85) !important;
+        padding: 2px 0;
       }
 
       .js-popup-footer {
-        padding: 0 12px 20px;
+        padding: 0 16px 24px;
       }
 
       .js-popup-cta {
-        padding: 10px 24px;
-        font-size: 11px;
+        padding: 12px 24px;
+        font-size: 12px;
         width: 100%;
         justify-content: center;
       }
