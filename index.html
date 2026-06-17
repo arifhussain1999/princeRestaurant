@@ -4731,14 +4731,44 @@
     /* ── Responsive adjustments ── */
     @media (max-width: 640px) {
       .js-popup-overlay {
-        padding: 8px;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        position: relative;
+        inset: auto;
+        background: linear-gradient(165deg, #1a0505 0%, #2a0808 30%, #3d0b0b 100%);
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0;
+        z-index: 9999;
+        display: none; /* Hidden by default, shown when active */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .js-popup-overlay.active {
+        display: block;
+        opacity: 1;
+        visibility: visible;
       }
 
       .js-popup {
-        border-radius: 16px;
-        max-height: 96vh;
+        position: relative;
+        max-width: 100%;
+        max-height: none;
+        overflow: visible;
+        border-radius: 0;
+        border: none;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        box-shadow: none;
+        transform: none !important;
+        background: transparent; /* Since parent has background */
+      }
+
+      .js-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        float: none;
+        margin-right: 0;
       }
 
       .js-popup-header {
@@ -5119,6 +5149,11 @@
       var endOfFestival = new Date('2026-06-21T00:00:00+05:30');
       if (now > endOfFestival) return;
 
+      // Move overlay to top of body on mobile before display
+      if (window.innerWidth <= 640 && !sessionStorage.getItem('jamaiPopupDismissed')) {
+        document.body.insertBefore(overlay, document.body.firstChild);
+      }
+
       // Check session storage — show only once per session
       if (sessionStorage.getItem('jamaiPopupDismissed')) return;
 
@@ -5145,7 +5180,9 @@
 
       function openPopup() {
         overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        if (window.innerWidth > 640) {
+          document.body.style.overflow = 'hidden';
+        }
       }
 
       function closePopup() {
