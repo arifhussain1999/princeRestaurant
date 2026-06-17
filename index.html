@@ -4457,11 +4457,40 @@
       padding: 10px 24px 28px;
     }
 
-    @media (max-width: 640px) {
-      .js-thali-grid {
-        grid-template-columns: 1fr;
-        padding: 10px 16px 24px;
-      }
+    /* ── Tab Buttons for Mobile ── */
+    .js-thali-tabs {
+      display: none;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 24px 12px;
+    }
+
+    .js-tab-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      background: rgba(0, 0, 0, 0.35);
+      color: rgba(212, 175, 55, 0.7);
+      font-family: var(--fb);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .js-tab-btn:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      color: rgba(212, 175, 55, 0.9);
+    }
+
+    .js-tab-btn.active {
+      background: linear-gradient(135deg, #d4af37, #c5a028);
+      color: #1a0505;
+      border-color: #d4af37;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
     }
 
     /* ── Individual Thali Card ── */
@@ -4701,37 +4730,145 @@
 
     /* ── Responsive adjustments ── */
     @media (max-width: 640px) {
+      .js-popup-overlay {
+        padding: 8px;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      .js-popup {
+        border-radius: 16px;
+        max-height: 96vh;
+      }
+
       .js-popup-header {
-        padding: 30px 20px 16px;
+        padding: 16px 12px 10px;
+      }
+
+      .js-festival-ornament {
+        display: none;
+      }
+
+      .js-bengali-text {
+        font-size: 11px;
+        margin-bottom: 2px;
       }
 
       .js-festival-title {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 2px;
+      }
+
+      .js-festival-subtitle {
+        font-size: 11px;
+        margin-bottom: 6px;
+        letter-spacing: 0.15em;
+      }
+
+      .js-festival-date {
+        font-size: 10px;
+        padding: 4px 12px;
+        margin-bottom: 4px;
+      }
+
+      .js-festival-tagline {
+        display: none;
       }
 
       .js-countdown-row {
-        gap: 10px;
-      }
-
-      .js-cd-num {
-        font-size: 22px;
+        margin: 6px 0 4px;
+        gap: 6px;
       }
 
       .js-cd-box {
-        min-width: 46px;
+        min-width: 36px;
+      }
+
+      .js-cd-num {
+        font-size: 18px;
+      }
+
+      .js-cd-label {
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        margin-top: 2px;
+      }
+
+      .js-cd-sep {
+        font-size: 16px;
+        margin-top: 0;
+      }
+
+      .js-thali-tabs {
+        display: flex;
+        padding: 0 16px 8px;
+      }
+
+      .js-thali-grid {
+        grid-template-columns: 1fr !important;
+        padding: 8px 12px 16px;
+      }
+
+      .js-thali-grid.show-standard .js-thali-card.premium {
+        display: none !important;
+      }
+
+      .js-thali-grid.show-premium .js-thali-card.standard {
+        display: none !important;
       }
 
       .js-thali-card {
-        padding: 20px 16px;
+        padding: 16px 14px;
+        border-radius: 12px;
+      }
+
+      .js-thali-name {
+        font-size: 16px;
+        margin-bottom: 2px;
+      }
+
+      .js-thali-price-row {
+        margin-bottom: 10px;
       }
 
       .js-thali-price {
-        font-size: 26px;
+        font-size: 22px;
+      }
+
+      .js-menu-cat {
+        margin-bottom: 8px;
+      }
+
+      .js-menu-cat-title {
+        font-size: 10px;
+        margin-bottom: 4px;
+        padding-bottom: 2px;
+      }
+
+      .js-menu-cat li {
+        font-size: 12px;
+        padding: 1px 0;
+      }
+
+      .js-popup-footer {
+        padding: 0 12px 20px;
       }
 
       .js-popup-cta {
-        padding: 12px 28px;
-        font-size: 12px;
+        padding: 10px 24px;
+        font-size: 11px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .js-popup-phone {
+        margin-top: 8px;
+        font-size: 11px;
+      }
+
+      .js-popup-bengali-footer {
+        margin-top: 8px;
+        font-size: 11px;
       }
     }
   </style>
@@ -4828,8 +4965,14 @@
         </div>
       </div>
 
+      <!-- Tab Buttons for Mobile (Hidden on Desktop) -->
+      <div class="js-thali-tabs">
+        <button type="button" class="js-tab-btn active" data-tab="standard">Special Thali (₹320)</button>
+        <button type="button" class="js-tab-btn" data-tab="premium">Premium Thali (₹399)</button>
+      </div>
+
       <!-- ── Thali Cards ── -->
-      <div class="js-thali-grid">
+      <div class="js-thali-grid show-standard">
 
         <!-- SPECIAL THALI -->
         <div class="js-thali-card standard">
@@ -4978,6 +5121,27 @@
 
       // Check session storage — show only once per session
       if (sessionStorage.getItem('jamaiPopupDismissed')) return;
+
+      // Tab switching logic for mobile
+      var tabButtons = document.querySelectorAll('.js-tab-btn');
+      var thaliGrid = document.querySelector('.js-thali-grid');
+      if (thaliGrid) {
+        tabButtons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var targetTab = btn.getAttribute('data-tab');
+            tabButtons.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            
+            if (targetTab === 'standard') {
+              thaliGrid.classList.add('show-standard');
+              thaliGrid.classList.remove('show-premium');
+            } else {
+              thaliGrid.classList.add('show-premium');
+              thaliGrid.classList.remove('show-standard');
+            }
+          });
+        });
+      }
 
       function openPopup() {
         overlay.classList.add('active');
